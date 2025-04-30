@@ -22,16 +22,16 @@
 	<header class="header-con sticky">
 		<%@ include file="header.jsp" %>
 	</header>
-	<div class="scroll-down">
-		<p>Scroll down</p>
-		<i class="fa-solid fa-computer-mouse"></i>
-	</div>
 	<main class="container">
 		<section class="video-scroll-section">
 			<div class="scroll-container">
 				<video preload="auto" id="scrollVideo" playsinline>
-					<source src="${pageContext.request.contextPath}/resources/home.mp4" type="video/mp4">
+					<source src="${pageContext.request.contextPath}/resources/homepge.mp4" type="video/mp4">
 				</video>
+			</div>
+			<div class="scroll-down">
+				<p>Scroll down</p>
+				<i class="fa-solid fa-computer-mouse"></i>
 			</div>
 			<div class="blur-con">
 				<h1 class="blurShow one">Where</h1>

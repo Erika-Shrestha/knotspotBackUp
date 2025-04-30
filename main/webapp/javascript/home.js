@@ -47,28 +47,18 @@ function initScrollVideo() {
     const video = document.getElementById('scrollVideo');
     const section = document.querySelector('.video-scroll-section');
 
-    video.addEventListener('loadedmetadata', () => {
-        const duration = video.duration;
-        const sectionHeight = section.scrollHeight - window.innerHeight;
+	video.addEventListener('loadedmetadata', () => {
+		const duration = video.duration;
+		const sectionHeight = section.offsetHeight - window.innerHeight;
 
-        function onScroll() {
-            const scrollPosition = window.scrollY;
-
-            const scrollFraction = Math.min(Math.max(scrollPosition / sectionHeight, 0), 1);
-
-
-            video.currentTime = scrollFraction * duration;
-
-			 if (video.currentTime < 0) {
-			    video.currentTime = 0;
-			 	} 
-			else if (video.currentTime > duration) {
-			    video.currentTime = duration;
-				}
+		function onScroll() {
+			const scrollPosition = window.scrollY - section.offsetTop;
+			const scrollFraction = Math.min(Math.max(scrollPosition / sectionHeight, 0), 1);
+			video.currentTime = scrollFraction * duration;
 		}
 
-        window.addEventListener('scroll', onScroll);
-        onScroll();
+		window.addEventListener('scroll', onScroll);
+		onScroll();
 	});
 }
 
