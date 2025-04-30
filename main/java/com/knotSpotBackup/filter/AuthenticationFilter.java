@@ -42,7 +42,9 @@ public class AuthenticationFilter implements Filter {
 	    String url = req.getRequestURI();
 	    System.out.println("Requested URL: " + url);
 	   	    if (url.contains(login)|| url.contains("/WEB-INF/") ||
-	        url.endsWith(".css") || url.endsWith(".js") || url.endsWith(".jpg") || url.endsWith(".png")) {
+	        url.endsWith(".css") || url.endsWith(".js") || url.endsWith(".jpg") || url.endsWith(".png") || 
+	        url.endsWith(".mp4") || url.contains("/resources/") ||
+	        url.contains("/css/") || url.contains("/javascript/")) {
 	        chain.doFilter(request, response);
 	        return;
 	    }

@@ -96,10 +96,11 @@
 				<span>></span>
 				</a>
 				
-				<form id="logoutForm" action="${pageContext.request.contextPath}/logout" method="post">
-				    <input type="hidden" name="logout" value="logout">
-				</form>
-								
+				<a href="#" class="menu-link">
+				<i class="fa-solid fa-right-from-bracket"></i>
+				<p>Logout</p>
+				<span>></span>
+				</a>		
 				
 				</div>
 				</div>

@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+*{
+	margin: 0;
+	font-family: inter;
+}
+
+body{
+	width: 100%;
+	min-height: 200rem;
+}
+
+#scrollVideo {
+	position: sticky;
+	top: 0;
+	width: 100%;
+	height: 100vh;
+	object-fit: cover;
+}
+
+.welcome-con{
+	position: relative;
+	width: 100%;
+  	height: 300vh;
+  	overflow: hidden;
+	background-color: pink;
+}
+
+.intro-con{
+	position: absolute;
+}
+
+.intro-con h1{
+	font-size: 2rem;
+	color: yellow;
+}
+
+.intro-con span{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    line-height: 1.5;
+}
+
+.card{
+	width: 20rem;
+	height: 20rem;
+	overflow: hidden;
+	margin-left: 0.1rem;
+	
+}
+
+.image-wrapper{
+	width:100%;
+	height: 200%;
+	will-change: transform;
+}
+
+.image-wrapper img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.space{
+	height: 40vh;
+}
+
+.blur-con{
+	display: flex;
+	flex-direction: column;
+	font-size: 2rem;
+	position: absolute;
+	top: 500%;
+	left: 37%;
+	width: 20rem;
+	height: 20rem;
+	background-color: white;
+}
+
+.blurShow.one{
+	margin-left:2rem;
+}
+
+.blurShow.two{
+	margin-left:7rem;
+}
+
+.blurShow.three{
+	margin-left:12rem;
+}
+
+.blurShow.four{
+	margin-left:7rem;
+}
+
+.blurShow.five{
+	margin-left:2rem;
+}
+
+.blurShow.six{
+	margin-left:5rem;
+}
+
+.blurShow h1{
+	animation: autoBlurAnimation both;
+	animation-timeline: view();
+}
+
+@keyframes autoBlurAnimation{
+	from{
+		filter: blur(2.5rem);
+	}
+	to{
+		filter: blur(0);
+	}
+	
+}
