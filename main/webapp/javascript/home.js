@@ -45,7 +45,7 @@ initCards();
 
 function initScrollVideo() {
     const video = document.getElementById('scrollVideo');
-    const section = document.querySelector('.welcome-con');
+    const section = document.querySelector('.video-scroll-section');
 
     video.addEventListener('loadedmetadata', () => {
         const duration = video.duration;
@@ -56,20 +56,20 @@ function initScrollVideo() {
 
             const scrollFraction = Math.min(Math.max(scrollPosition / sectionHeight, 0), 1);
 
+
             video.currentTime = scrollFraction * duration;
 
-            if (video.currentTime < 0) {
-                video.currentTime = 0;
-            } else if (video.currentTime > duration) {
-                video.currentTime = duration;
-            }
-        }
+			 if (video.currentTime < 0) {
+			    video.currentTime = 0;
+			 	} 
+			else if (video.currentTime > duration) {
+			    video.currentTime = duration;
+				}
+		}
 
         window.addEventListener('scroll', onScroll);
-
-
         onScroll();
-    });
+	});
 }
 
 initScrollVideo();

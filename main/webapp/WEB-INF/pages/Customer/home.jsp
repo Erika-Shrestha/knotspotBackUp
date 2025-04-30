@@ -27,10 +27,12 @@
 		<i class="fa-solid fa-computer-mouse"></i>
 	</div>
 	<main class="container">
-		<section class="welcome-con">
-				<video preload="auto" id="scrollVideo" muted playsinline autoplay>
-				<source src="${pageContext.request.contextPath}/resources/home.mp4" type="video/mp4">
+		<section class="video-scroll-section">
+			<div class="scroll-container">
+				<video preload="auto" id="scrollVideo" playsinline>
+					<source src="${pageContext.request.contextPath}/resources/home.mp4" type="video/mp4">
 				</video>
+			</div>
 			<div class="blur-con">
 				<h1 class="blurShow one">Where</h1>
 				<h1 class="blurShow two">Every</h1>

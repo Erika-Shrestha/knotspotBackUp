@@ -11,19 +11,24 @@ body{
 }
 
 #scrollVideo {
-	position: sticky;
-	top: 0;
 	width: 100%;
 	height: 100vh;
 	object-fit: cover;
 }
 
-.welcome-con{
+
+.video-scroll-section{
 	position: relative;
-	width: 100%;
-  	height: 300vh;
-  	overflow: hidden;
+  	height: 1000vh;
 	background-color: pink;
+}
+
+.scroll-container{
+	position: sticky;
+	top:0;
+	height: 100vh;
+	width: 100%;
+	overflow: hidden;
 }
 
 .intro-con{
