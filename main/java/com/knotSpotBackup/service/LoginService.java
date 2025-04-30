@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.knotSpotBackup.config.DdConfig;
 import com.knotSpotBackup.model.UserModel;
+import com.knotSpotBackup.util.PasswordUtil;
 
 public class LoginService {
 private Connection conn;	//Declare a variable to store the sql connection imported from config class
@@ -40,9 +41,9 @@ private Connection conn;	//Declare a variable to store the sql connection import
 			
 			if(i.next()) {
 				String storedPassword = i.getString("password");
-				String storedRole = i.getString("role");
+				String storedRole = i.getString("role_id");
 				
-				if(storedPassword.equals(users.getPassword())) {
+				if(PasswordUtil.checkPassword(users.getPassword(), storedPassword)) {
 					System.out.println("Logged in succesfully");
 					users.setRole(storedRole);
 					return users;

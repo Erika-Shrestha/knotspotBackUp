@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,7 @@
 <body>
 	<div class="main-container <c:if test="${not empty showRegister}">active</c:if>">
 	<div class ="form-box login">
-	<form action="${pageContext.request.contextPath}/authentication" method="post">
+	<form action="${pageContext.request.contextPath}/login" method="post">
 	<h1>Login</h1>
 	<div class="input-box">
 	<input type="text" placeholder="Enter your username" name="username" value="${username}"required>
@@ -48,7 +48,7 @@
 	
 	<!-- if c tag error then show active form of register  -->
 	<div class ="form-box register">
-	<form action="${pageContext.request.contextPath}/authentication" method="post">
+	<form action="${pageContext.request.contextPath}/login" method="post">
 	<h1>Register</h1>
 	<div class="element-container">
 	<div class="first-con">

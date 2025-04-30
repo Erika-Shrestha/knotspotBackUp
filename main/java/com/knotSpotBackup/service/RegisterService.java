@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import com.knotSpotBackup.config.DdConfig;
 import com.knotSpotBackup.model.UserModel;
+import com.knotSpotBackup.util.PasswordUtil;
 
 public class RegisterService {
 private Connection conn;
@@ -26,6 +27,9 @@ private Connection conn;
 		}
 		
 		try {
+			String hashedPassword = PasswordUtil.hashPassword(users.getPassword());
+            users.setPassword(hashedPassword);
+            
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO users(first_name, middle_name, last_name, age, gender, address, contact_no, email, username, password, registered_date, role_id, task_id) "
 					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			
@@ -38,7 +42,7 @@ private Connection conn;
 			ps.setString(7, users.getContactNumber());
 			ps.setString(8, users.getEmail());
 			ps.setString(9, users.getUsername());
-			ps.setString(10,users.getPassword());
+			ps.setString(10,hashedPassword);
 			ps.setDate(11, java.sql.Date.valueOf(LocalDate.now()));
 			ps.setString(12, users.getRole());
 			ps.setString(13, "T1");

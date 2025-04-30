@@ -32,7 +32,7 @@ public class LogOutController extends HttpServlet {
 	private void handleLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession(false);
 		session.invalidate();
-		CookieUtil.clearCookie(response, "role");
+		CookieUtil.clearCookie(response, "role_id");
 		System.out.println("User session has been successfully logged out");
 	}
 }

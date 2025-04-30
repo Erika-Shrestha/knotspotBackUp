@@ -30,15 +30,6 @@ public class AuthenticationController extends HttpServlet {
 		//use of cache control to not store the data 
 		response.setHeader("Cache-Control","no-store");
 		
-		//checks if user can access the login page even after being logged in 
-		HttpSession session = request.getSession(false);
-		if(session !=null) {
-		String userSession = (String) session.getAttribute("username");
-		if(userSession !=null) {
-			response.sendRedirect(request.getContextPath() + "/dashboard");
-			return;
-		}
-		}
 		request.getRequestDispatcher("/WEB-INF/pages/auth.jsp").forward(request,response);
 	}
 
@@ -192,7 +183,6 @@ public class AuthenticationController extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String role = request.getParameter("role");
 		
 		if(username !=null && password !=null) {
 			System.out.println("user and password is not empty");
@@ -208,9 +198,17 @@ public class AuthenticationController extends HttpServlet {
 				//creates a session for each new users if does not exists makes one using true
 				HttpSession session = request.getSession(true);
 				session.setAttribute("username", username);
+				System.out.println("Session ID: "+session);
 				CookieUtil.addCookie(response, "role", retreivedUser.getRole(), 15 * 60);
-				System.out.println(session.getAttribute("username"));
-				response.sendRedirect(request.getContextPath() + "/dashboard");
+				System.out.println("Login successful. Role cookie set: " + retreivedUser.getRole());
+				String role = retreivedUser.getRole();
+			    if ("RL1".equalsIgnoreCase(role)) {
+			        response.sendRedirect(request.getContextPath() + "/dashboard");
+			    } else if ("RL2".equalsIgnoreCase(role)) {
+			        response.sendRedirect(request.getContextPath() + "/home");
+			    } else {
+			        response.sendRedirect(request.getContextPath() + "/login");
+			    }
 
 			}
 			else {
