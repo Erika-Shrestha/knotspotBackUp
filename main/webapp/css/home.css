@@ -120,7 +120,6 @@ header i, .header i {
 	width: 100%;
 	height: 85rem;
 	background-color: #4E0707;
-	/*background-color: #4E0707;*/
 }
 
 .line{
@@ -323,6 +322,96 @@ header i, .header i {
 	
 }
 
+.venue-con{
+	width: 100%;
+	height: 60rem;
+	padding-top: 5rem;
+	background: #F5F5F5;
+}
 
+.slider-wrapper{
+	overflow: hidden;
+	max-width: 100%;
+	margin: 0 4rem 3rem;
+}
 
+.card-list{
+	margin-left: 2rem;
+}
 
+.card-list .card-item{
+	user-select: none;
+	padding: 0.3rem 1.5rem 1rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 0.5rem;
+	background: rgba(32,34,22,0.6);
+	backdrop-filter: blur(4rem);
+	border: 0.1rem solid rgba(32,34,22,0.5);
+}
+
+.card-list .card-item.swiper-slide {
+  max-width: 17rem;
+}
+
+.card-list .card-item .venue-img{
+	width: 15rem;
+	height: 10rem;
+	border-radius: 0.5rem;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	border: 0.1rem solid #202216;
+	padding: 0.4rem;
+}
+
+.card-list .card-item .venue-desc{
+	font-size: 1.15rem;
+	color: #4E0707;
+	font-weight: 500;
+	margin: 0.8rem 0 2rem;
+	
+}
+
+.card-list .card-item .venue-button{
+	font-size: 1.15rem;
+	padding: 0.5rem 2rem;
+	color: #fff;
+	font-weight: 500;
+	cursor: pointer;
+	background: #000;
+	border: 0.2rem solid transparent;
+	transition: 0.2s ease;
+	border-radius: 0.2rem;
+	
+}
+
+.card-list .card-item .venue-button:hover{
+	background: transparent;
+	border: 0.2rem solid #000;
+	color: black;
+}
+
+.slider-wrapper .swiper-pagination-bullet{
+	Background: white;
+  	width: 0.5rem;
+  	height: 0.5rem;
+  	opacity: 0.5;
+  	transition: transform 0.3s ease, opacity 0.3s ease;
+  	margin: 0 0.3rem;
+}
+
+.slider-wrapper .swiper-pagination-bullet-active {
+  	transform: scale(1.5); 
+  	opacity: 1;
+}
+
+.slider-wrapper .swiper-slide-button{
+	color: black;
+	margin-top: -3rem; 
+	transition: 0.2s ease;
+}
+
+.slider-wrapper .swiper-slide-button:hover{
+	color: red;
+}

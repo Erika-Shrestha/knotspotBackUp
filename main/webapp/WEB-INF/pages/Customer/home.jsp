@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Knot spot</title>
-<!-- This connects to dashboard.css file -->
+<!-- This connects to swiper js file -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<!-- This connects to home.css file -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
 
 
@@ -25,7 +27,7 @@
 	<main class="container">
 		<section class="video-scroll-section">
 			<div class="scroll-container">
-				<video preload="auto" id="scrollVideo" playsinline>
+				<video preload="metadata" id="scrollVideo" playsinline>
 					<source src="${pageContext.request.contextPath}/resources/homepge.mp4" type="video/mp4">
 				</video>
 			</div>
@@ -57,7 +59,7 @@
 				<div class="image-wrapper">
 					<img src="${pageContext.request.contextPath}/resources/cat-one.jpg" alt="test_image">
 				</div>
-				<div class="rec-desc one data-index="1">
+				<div class="rec-desc one" data-index="1">
 					<h1>Most Visited Ones</h1>
 					<p>Get to our most loved venues</p>
 				</div>
@@ -67,7 +69,7 @@
 				<div class="image-wrapper">
 					<img src="${pageContext.request.contextPath}/resources/cat-two.jpg" alt="test_image">
 				</div>
-				<div class="rec-desc two data-index="2">
+				<div class="rec-desc two" data-index="2">
 					<h1>Most Visited Ones</h1>
 					<p>Get to our most loved venues</p>
 				</div>
@@ -77,7 +79,7 @@
 				<div class="image-wrapper">
 					<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image">
 				</div>
-				<div class="rec-desc three data-index="3">
+				<div class="rec-desc three" data-index="3">
 					<h1>Most Visited Ones</h1>
 					<p>Get to our most loved venues</p>
 				</div>
@@ -85,7 +87,69 @@
 			</div>
 		</section>
 		<div class="space"></div>
+		<section class="venue-con">
+			<div class="container swiper">
+				<div class="slider-wrapper">
+					<div class="card-list swiper-wrapper">
+						<div class="card-item swiper-slide">
+							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
+							<h2 class="venue-name">Venue Name</h2>
+							<p class="venue-desc">This is a description.</p>
+							<button class="venue-button">View</button>
+						</div>
+						<div class="card-item swiper-slide">
+							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
+							<h2 class="venue-name">Venue Name</h2>
+							<p class="venue-desc">This is a description.</p>
+							<button class="venue-button">View</button>
+						</div>
+						<div class="card-item swiper-slide">
+							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
+							<h2 class="venue-name">Venue Name</h2>
+							<p class="venue-desc">This is a description.</p>
+							<button class="venue-button">View</button>
+						</div>
+						<div class="card-item swiper-slide">
+							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
+							<h2 class="venue-name">Venue Name</h2>
+							<p class="venue-desc">This is a description.</p>
+							<button class="venue-button">View</button>
+						</div>
+						<div class="card-item swiper-slide">
+							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
+							<h2 class="venue-name">Venue Name</h2>
+							<p class="venue-desc">This is a description.</p>
+							<button class="venue-button">View</button>
+						</div>
+						<div class="card-item swiper-slide">
+							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
+							<h2 class="venue-name">Venue Name</h2>
+							<p class="venue-desc">This is a description.</p>
+							<button class="venue-button">View</button>
+						</div>
+						<div class="card-item swiper-slide">
+							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
+							<h2 class="venue-name">Venue Name</h2>
+							<p class="venue-desc">This is a description.</p>
+							<button class="venue-button">View</button>
+						</div>
+						<div class="card-item swiper-slide">
+							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
+							<h2 class="venue-name">Venue Name</h2>
+							<p class="venue-desc">This is a description.</p>
+							<button class="venue-button">View</button>
+						</div>
+						
+					</div>
+					<div class="swiper-pagination"></div>
+					<div class="swiper-slide-button swiper-button-prev"></div>
+  					<div class="swiper-slide-button swiper-button-next"></div>
+				</div>
+			</div>
+		</section>
 	</main>
+	<!-- This connects to swiper js javascript -->
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/home.js"></script>
 </body>
 </html>

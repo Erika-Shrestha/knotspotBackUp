@@ -62,7 +62,9 @@ function initScrollVideo() {
 	});
 }
 
-initScrollVideo();
+document.addEventListener("DOMContentLoaded", function () {
+    initScrollVideo();
+});
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -109,5 +111,38 @@ document.querySelectorAll('.rec-desc').forEach(desc => {
     });
   }, { threshold: 0.7 });
   observer.observe(desc);
+});
+
+//swiper initialize 
+const swiper = new Swiper('.slider-wrapper', {
+  loop: true,
+  grabCursor: true,
+  spaceBetween: 80,
+  centeredSlides: true,
+
+  pagination: {
+    el: '.swiper-pagination',
+	clickable: true,
+	dynamicBullet: true
+  },
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  
+  //responsive breakpoints
+  breakpoints:{
+	0:{
+		slidesPerView: 1
+	},
+	620:{
+			slidesPerView: 2
+	},
+	1024:{
+			slidesPerView: 3
+	}
+  }
+
 });
 
