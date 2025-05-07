@@ -38,7 +38,8 @@
 				<h1 class="blurShow two">Every</h1>
 				<h1 class="blurShow three">Knot</h1>
 				<h1 class="blurShow four">Ties A</h1>
-				<h1 class="blurShow five">Beautiful Memories</h1>
+				<h1 class="blurShow five">Beautiful</h1>
+				<h1 class="blurShow six">Memories</h1>
 			</div>
 			<div class="intro-con">
 				<h1 class="autoShow"><span>This is not just an ordinary event planners</span>
@@ -46,15 +47,43 @@
 				Guided by “Wed me good” we offer luxurious service, and Nepal's signature warmth for a truly memorable wedding experience.</span></h1>
 			</div>
 			<div class="img-box">
-				<img src="${pageContext.request.contextPath}/resources/companybatch.png" class="autoRotate">
+				<img src="${pageContext.request.contextPath}/resources/companybatch.png" class="autoRotate rotate">
 			</div>
 		</section>
 		<div class="space"></div>
-		<div class="card">
+		<section class="recommend-con">
+			<div class="line"></div>
+			<div class="card one">
 				<div class="image-wrapper">
-					<img src="${pageContext.request.contextPath}/resources/missionimg.jpg" alt="test_image">
+					<img src="${pageContext.request.contextPath}/resources/cat-one.jpg" alt="test_image">
 				</div>
+				<div class="rec-desc one data-index="1">
+					<h1>Most Visited Ones</h1>
+					<p>Get to our most loved venues</p>
+				</div>
+				<button class="view-btn one">View</button>
 			</div>
+			<div class="card two">
+				<div class="image-wrapper">
+					<img src="${pageContext.request.contextPath}/resources/cat-two.jpg" alt="test_image">
+				</div>
+				<div class="rec-desc two data-index="2">
+					<h1>Most Visited Ones</h1>
+					<p>Get to our most loved venues</p>
+				</div>
+				<button class="view-btn two">View</button>
+			</div>
+			<div class="card three">
+				<div class="image-wrapper">
+					<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image">
+				</div>
+				<div class="rec-desc three data-index="3">
+					<h1>Most Visited Ones</h1>
+					<p>Get to our most loved venues</p>
+				</div>
+				<button class="view-btn three">View</button>
+			</div>
+		</section>
 		<div class="space"></div>
 	</main>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/home.js"></script>

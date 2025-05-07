@@ -64,30 +64,50 @@ function initScrollVideo() {
 
 initScrollVideo();
 
-function navScroll() {
-  const body = document.body;
-  let lastScroll = 0;
-  
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
 
-    if (currentScroll > lastScroll && !body.classList.contains("scroll-down")) {
-      body.classList.remove("scroll-up");
-      body.classList.add("scroll-down");
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    const rotatingImage = document.querySelector('.autoRotate');
 
-    if (currentScroll < lastScroll && !body.classList.contains("scroll-up")) {
-      body.classList.remove("scroll-down");
-      body.classList.add("scroll-up");
-    }
+    rotatingImage.classList.add('rotate');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          rotatingImage.classList.remove('rotate'); 
+        } else {
+          rotatingImage.classList.add('rotate');
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.98
+    });
+
+    observer.observe(rotatingImage);
+});
 
 
-    if (currentScroll <= 0) {
-      body.classList.remove("scroll-up");
-    }
+let lastScrollY = window.scrollY;
+document.querySelectorAll('.rec-desc').forEach(desc => {
+  let rotated = false;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+      if (entry.isIntersecting && scrollingDown && !rotated) {
+        entry.target.style.transition = 'none';
+        entry.target.style.transform = 'rotateX(0deg)';
+        void entry.target.offsetWidth;
+        entry.target.style.transition = 'transform 1.5s ease';
+        entry.target.style.transform = 'rotateX(360deg)';
+        rotated = true;
+      }
+      if (!entry.isIntersecting) {
+        rotated = false;
+      }
+      lastScrollY = currentScrollY;
+    });
+  }, { threshold: 0.7 });
+  observer.observe(desc);
+});
 
-    lastScroll = currentScroll;
-  });
-}
-
-navScroll();
