@@ -129,7 +129,7 @@ body{
 	display: flex;
 	height: 3rem;
 	font-size: 0.6rem;
-	margin-bottom: 0.3rem;
+	
 }
 
 .radio-con{
@@ -153,6 +153,7 @@ body{
 	border: 0.002rem solid #828282;
 	padding: 0rem 0rem 0rem 0.7rem;
 	margin-left: 0.6rem;
+	margin-top: 0.6rem;
 	outline: none;
 	color:grey;
 	font-size: 0.7rem;
@@ -164,13 +165,14 @@ body{
 	color:grey;
 	height: 1.85rem;
 	padding: 0rem 0.3rem 0rem 0.2rem;
+	margin-top: 0.6rem;
 }
 
 .form-box.register .last-con{
 	display: flex;
 	flex-direction: column;
 	gap: 0.8rem;
-	height: 5.5rem;
+	height: 5rem;	
 	
 }
 
@@ -193,9 +195,56 @@ body{
 	padding: 0.7rem 0.6rem 0.7rem 1rem;
 }
 
+.role-file-con{
+	width: 9rem;
+	height: 2rem;
+	display: flex;
+	gap: 1rem;
+	color: white;
+}
+
+.role-file-con select{
+	width: 6.5rem;
+	height: 1.9rem;
+	background: white;
+	border-radius: 0.7rem;
+	border: 0.002rem solid #828282;
+	padding: 0rem 0rem 0rem 0.7rem;
+	outline: none;
+	color:grey;
+	font-size: 0.7rem;
+	font-weight: 400;
+}
+
+.file-con{
+  position: relative;
+  display: inline-block;
+}
+
+.file-box{
+  display: none;
+}
+
+.role-file-con .file-label{
+	display: inline-block;
+	width: 6.5rem;
+	height: 1.9rem;
+	background: grey;
+	border: 0.002rem solid #828282;
+	border-radius: 0.7rem;
+	color: black;
+	font-size: 0.7rem;
+	font-weight: 400;
+	text-align: center;
+	line-height: 1.9rem;
+	cursor: pointer;
+	padding-left: 0.7rem;
+}
+
 .form-box.register .last-con .input-box{
 	display: flex;
 }
+
 
 .check-box-con{
 	display: flex;
@@ -213,21 +262,9 @@ body{
 
 .form-box.register .element-container button{
 	width: 21rem;
-	margin-top: 2.1rem;
+	margin-top: 5rem;
 }
 
-.form-box.register .element-container h2{
-	margin-top: 0.7rem;
-}
-
-.form-box.register .element-container .social-btn{
-	margin-top: 1rem;
-}
-
-.form-box.register .element-container .google-box i{
-	left: 7rem;
-	top: 88%;
-}
 
 form{
 	margin-top:auto;

@@ -130,13 +130,19 @@
 	<div class="input-box">
 	<input type="password" id="retypePassword" placeholder="Confirm password*" name="retypePassword" required>
 	</div>
-	<div class="input-box">
-    <select class="role" name="role" required>
-        <option value="">Select Role</option>
-        <option value="RL1">Admin</option>
-        <option value="RL2">Customer</option>
-    </select>
 	</div>
+	<div class="role-file-con">
+		<div class="input-box">
+	    <select class="role" name="role" required>
+	        <option value="">Select Role</option>
+	        <option value="RL1">Admin</option>
+	        <option value="RL2">Customer</option>
+	    </select>
+		</div>
+		<div class="file-con">
+		  <label class="file-label" for="file-upload">Upload Image</label>
+		  <input type="file" id="file-upload" class="file-box" />
+		</div>
 	</div>
 	<div class="check-box-con">
 	<label>
@@ -146,11 +152,6 @@
 	</div>
 
 	<button type="submit" class="btn" name="register" value="register">Register</button>
-	<h2 class="continue-break">or continue with</h2>
-	<div class="google-box">
-	<button class="social-btn">google</button>
-	<i class="fa-brands fa-google"></i>
-	</div>
 	</div>
 	</form>
 	</div>
