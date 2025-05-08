@@ -146,3 +146,18 @@ const swiper = new Swiper('.slider-wrapper', {
 
 });
 
+//sticky navbar
+const nav_bar = document.querySelector(".header");
+const section_hero =  document.querySelector(".recommend-con");
+const observer = new IntersectionObserver((entries)=>{
+	const ent = entries[0];
+	console.log(ent);
+	ent.isIntersecting == false ? nav_bar.classList.add("sticky") : nav_bar.classList.remove("sticky");
+},{
+	root:null,
+	rootMargin: "",
+	threshold: 0,
+	
+});
+
+observer.observe(section_hero);

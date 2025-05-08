@@ -26,3 +26,4 @@ document.addEventListener('click', function(event){
 document.querySelector(".user-pic").addEventListener("click", function(event) {
     toggleMenu();
 });
+

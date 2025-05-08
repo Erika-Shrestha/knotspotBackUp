@@ -21,7 +21,7 @@
 
 </head>
 <body>
-		<div class="header">
+		<div class="header sticky">
 			<div class="company-con">
 			
 				<div class="smalltab">
