@@ -59,16 +59,16 @@
 						<div class="category-one">
 							<h1>Company</h1>
 							<ul>
-								<li><a>Products</a></li>
-								<li><a>Blog</a></li>
-								<li><a>About Us</a></li>
+								<li><a href="${pageContext.request.contextPath}/product">Products</a></li>
+								<li><a href="${pageContext.request.contextPath}/blog">Blog</a></li>
+								<li><a href="${pageContext.request.contextPath}/aboutUs">About Us</a></li>
 							</ul>
 						</div>
 						<div class="category-two">
 							<h1>Service</h1>
 							<ul>
-								<li><a>Contact Us</a></li>
-								<li><a>FAQ</a></li>
+								<li><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
+								<li><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
 							</ul>
 						</div>
 					</div>

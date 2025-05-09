@@ -96,7 +96,7 @@
 .header .company-con .div-sidebar{
     left:-25%;
     width: 18%; 
-    height: 35rem; 
+    height: 43rem; 
     z-index: 1;
     position: absolute;
     top: 3%; 
@@ -109,28 +109,38 @@
 .sidebar-lists{
 	height: 100%;
 	background-color: white;
-	list-style: none;
-	padding: 0;           
-  	margin: 0;            
+	list-style: none;           
   	display: flex;
   	flex-direction: column; 
   	align-items: center; 
+  	gap: 0.5rem;
+}
+
+.side-menu-col{
+	padding-top:4rem; 
+	font-size: 1.3rem; 
+	font-weight: 700;
 }
 
 
-.sidebar-lists a{
-    font-size: 0.7rem;
+.sidebar-lists li a{
+    font-size: 0.9rem;
 
 }
 
-.html-pages-lists a{
-    padding: 1rem;
+.sidebar-lists .html-pages-lists a{
     text-align: center;
     font-weight: 700;
     font-size: 0.9rem;
 }
 
+.html-pages-lists.top a{
+  margin-top: 2rem;
+  display: block;
+}
+
 .sidebar-lists a:hover{
+	color: black;
     text-decoration: underline;
 }
 
@@ -179,7 +189,7 @@ label #cancel:hover{
 }
 
 #check:checked ~ label #cancel{
-    left:14rem;
+    left:15rem;
     opacity: 100;
 } 
 

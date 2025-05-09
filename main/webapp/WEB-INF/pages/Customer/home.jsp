@@ -51,6 +51,7 @@
 				<h1 class="autoShow"><span>This is not just an ordinary event planners</span>
 				<span class="paragraph-span">Since 2020,  Knot spot has blended tradition and innovations to serve our customers with unique experience. 
 				Guided by “Wed me good” we offer luxurious service, and Nepal's signature warmth for a truly memorable wedding experience.</span></h1>
+				<button class="about-us-btn">Know more</button>
 			</div>
 			<div class="img-box">
 				<img src="${pageContext.request.contextPath}/resources/companybatch.png" class="autoRotate rotate">
@@ -155,7 +156,46 @@
 				</div>
 			</div>
 		</section>
+		<section class="blog-con">
+			<div class="blog-heading">
+				<h1><span>Browse</span> and <span>Read</span></h1>
+				<h2>Latest <span>Stuff</span></h2>
+			</div>
+			<div class="blog-container">
+				<div class="blog-card">
+					<article class="blog-article">
+						<img src="${pageContext.request.contextPath}/resources/blogthree.jpg" alt="test_image" class="blog-img">
+						<div class="blog-data">
+							<span class="blog-description">Top Religious Weddings in the History with Luxurious Venues</span>
+							<h2 class="blog-title">Worldwide Weddings</h2>
+							<a href="#" class="blog-btn">Read More</a>
+						</div>
+					</article>
+					
+					<article class="blog-article mid">
+						<img src="${pageContext.request.contextPath}/resources/blogone.png" alt="test_image" class="blog-img">
+						<div class="blog-data">
+							<span class="blog-description">Top Religious Weddings in the History with Luxurious Venues</span>
+							<h2 class="blog-title">Worldwide Weddings</h2>
+							<a href="#" class="blog-btn">Read More</a>
+						</div>
+					</article>
+					
+					<article class="blog-article">
+						<img src="${pageContext.request.contextPath}/resources/blogfour.jpg" alt="test_image" class="blog-img">
+						<div class="blog-data">
+							<span class="blog-description">Top Religious Weddings in the History with Luxurious Venues</span>
+							<h2 class="blog-title">Worldwide weddings</h2>
+							<a href="#" class="blog-btn">Read More</a>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
 	</main>
+	<footer>
+		<%@ include file="footer.jsp" %>
+	</footer>
 	<!-- This connects to swiper js javascript -->
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/home.js"></script>

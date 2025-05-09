@@ -32,19 +32,19 @@
 	                </label>
 	                <div class="div-sidebar">
 	                    <ul class="sidebar-lists">
-	                        <li style="padding-top:40px; font-size: 20px; font-weight: 700;">BRANDS</li>
-	                        <li><a href="">Nike</a></li>
-	                        <li><a href="">Adidas</a></li>
-	                        <li><a href="">Puma</a></li>
-	                        <li><a href="">Uggs</a></li>
-	                        <li><a href="product-newbalance.html">New Balance</a></li>
-	                        <li style="padding-top:50px; font-size: 20px; font-weight: 700;">NEW COLLECTION</li>
-	                        <li><a href="product-spring.html">Spring Collection</a></li>
-	                        <li><a href="product-autumn.html">Autumn Collection</a></li>
-	                        <li class="html-pages-lists" style="padding-top: 60px;"><a href="blog.html">Blog</a></li>
-	                        <li class="html-pages-lists"><a href="journey.html">Our Journey</a></li>
-	                        <li class="html-pages-lists"><a href="contact-us.html">Contact Us</a></li>
-	                        <li class="html-pages-lists"><a href="FAQs.html">FAQs</a></li>
+	                        <li class="side-menu-col">TYPES</li>
+	                        <li><a href="${pageContext.request.contextPath}/product">Banquet Hall</a></li>
+	                        <li><a href="${pageContext.request.contextPath}/product">Conference Room</a></li>
+	                        <li><a href="${pageContext.request.contextPath}/product">Outdoor Seatings</a></li>
+	                        <li><a href="${pageContext.request.contextPath}/product">Ballroom</a></li>
+	                        <li><a href="${pageContext.request.contextPath}/product">Resort/Hotel</a></li>
+	                        <li class="side-menu-col">NEW COLLECTION</li>
+	                        <li><a href="${pageContext.request.contextPath}/product">Spring Collection</a></li>
+	                        <li><a href="${pageContext.request.contextPath}/product">Autumn Collection</a></li>
+	                        <li class="html-pages-lists top"><a href="${pageContext.request.contextPath}/blog">Blog</a></li>
+	                        <li class="html-pages-lists"><a href="${pageContext.request.contextPath}/aboutUs">Our Journey</a></li>
+	                        <li class="html-pages-lists"><a href="${pageContext.request.contextPath}/contactUs">Contact Us</a></li>
+	                        <li class="html-pages-lists"><a href="${pageContext.request.contextPath}/faq">FAQs</a></li>
 	            
 	                    </ul>
 	                </div>
@@ -55,9 +55,9 @@
 			</div>
 			<div class="navigation">
 				<ul>
-                  <li><a href="">Home</a></li>
-                  <li><a href="">Product</a></li>
-                  <li><a href="contact.html">Blog</a></li>
+                  <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+                  <li><a href="${pageContext.request.contextPath}/product">Product</a></li>
+                  <li><a href="${pageContext.request.contextPath}/blog">Blog</a></li>
                   <li><a href="${pageContext.request.contextPath}/aboutUs">About us</a></li>
                   <li><a href="${pageContext.request.contextPath}/contactUs">Contact us</a></li>
                   <li><a href="${pageContext.request.contextPath}/faq">FAQ</a></li>
