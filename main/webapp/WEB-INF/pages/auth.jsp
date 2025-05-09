@@ -76,12 +76,18 @@
 	<c:if test="${not empty emailError}">
 		<label class="errorDisplay email">${emailError}</label>
 	</c:if>
+	<c:if test="${not empty emailDuplicate}">
+        <label class="errorDisplay email">${emailDuplicate}</label>
+    </c:if>
 	<input type="email" id="email" placeholder="Email*" name="email" value="${email}" required>
 	<i class="fa-solid fa-envelope"></i>
 	</div>
 	<div class="input-box">
 	<c:if test="${not empty contactError}">
 		<label class="errorDisplay contact">${contactError}</label>
+	</c:if>
+	<c:if test="${not empty contactDuplicate}">
+		<label class="errorDisplay contact">${contactDuplicate}</label>
 	</c:if>
 	<input type="tel" id="contact" placeholder="Contact name*" name="contact" value="${contact}" required>
 	<i class="fa-solid fa-phone"></i>
@@ -116,6 +122,9 @@
 	<div class="input-box">
 	<c:if test="${not empty usernameError}">
 		<label class="errorDisplay username">${usernameError}</label>
+	</c:if>
+	<c:if test="${not empty usernameDuplicate}">
+		<label class="errorDisplay username">${usernameDuplicate}</label>
 	</c:if>
 	<input type="text" id="username" placeholder="Username*" name="username" value="${username}" required>
 	<i class="fa-solid fa-user"></i>

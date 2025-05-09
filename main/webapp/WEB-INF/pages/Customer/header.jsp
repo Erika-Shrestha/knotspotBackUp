@@ -96,11 +96,13 @@
 				<span>></span>
 				</a>
 				
-				<a href="#" class="menu-link">
-				<i class="fa-solid fa-right-from-bracket"></i>
-				<p>Logout</p>
-				<span>></span>
-				</a>		
+				<form action="${pageContext.request.contextPath}/logout" method="post" class="logout-form">
+				  <button type="submit" class="menu-link logout-button" name="logout" value="logout">
+				    <i class="fa-solid fa-right-from-bracket"></i>
+				    <p>Logout</p>
+				    <span>></span>
+				  </button>
+				</form>		
 				
 				</div>
 				</div>

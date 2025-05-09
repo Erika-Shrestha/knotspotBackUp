@@ -22,6 +22,7 @@ import com.knotSpotBackup.util.SessionUtil;
 public class AuthenticationFilter implements Filter {
        
 	private static final String login = "/login";
+	private static final String logout = "/logout";
 	private static final String dashboard = "/dashboard";
 	private static final String home = "/home";
 	private static final String product = "/product";
@@ -49,9 +50,15 @@ public class AuthenticationFilter implements Filter {
 	        return;
 	    }
 	   	    
+	   	 if (url.endsWith(logout)) {
+	   	    chain.doFilter(request, response);
+	   	    return;
+	   	}
+	   	    
 	   	 boolean notLoggedIn = SessionUtil.redirectIfNotloggedIn(req, res, login);
 		    if (notLoggedIn) {
 		        System.out.println("Session missing or user not logged in.");
+		        avoidBackArrow(res);
 		        return;
 		    }
 
@@ -64,14 +71,14 @@ public class AuthenticationFilter implements Filter {
 		        res.sendRedirect(req.getContextPath() + login);
 		        return;
 		    }
-
+		    
 
 		    if ("RL1".equalsIgnoreCase(userRole)) {
 		        if (url.endsWith(login)) {
 		            res.sendRedirect(req.getContextPath() + dashboard);
 		        } else if (url.endsWith(dashboard) || url.endsWith(management) || url.endsWith(setting)
 		                || url.endsWith(profile) || url.endsWith(analytics) || url.endsWith(task) || url.endsWith("/")) {
-		            chain.doFilter(request, response);
+		        	chain.doFilter(request, response);
 		        } else {
 		            res.sendRedirect(req.getContextPath() + dashboard);
 		        }
@@ -81,20 +88,23 @@ public class AuthenticationFilter implements Filter {
 		        } else if (url.endsWith(home) || url.endsWith(aboutUs) || url.endsWith(product)
 		                || url.endsWith(blog) || url.endsWith(contactUs) || url.endsWith(faq)
 		                || url.endsWith(profile) || url.endsWith("/")) {
-		            chain.doFilter(request, response);
+		        	chain.doFilter(request, response);
 		        } else {
 		            res.sendRedirect(req.getContextPath() + home);
 		        }
 		    } else {
 		        res.sendRedirect(req.getContextPath() + login);
 		    }
+		    
 		
 	}
 
-
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
+	private void avoidBackArrow(HttpServletResponse res) {
+	    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+	    res.setHeader("Pragma", "no-cache");
+	    res.setDateHeader("Expires", 0);
+	}
+	
 	public void init(FilterConfig fConfig) throws ServletException {
 		
 	}

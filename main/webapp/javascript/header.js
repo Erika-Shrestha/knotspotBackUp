@@ -2,6 +2,7 @@
  * 
  */
 
+/** This function helps to display menu container when user profile is clicked */
 function toggleMenu(){
 	let menu = document.getElementById("menu");
 	menu.classList.toggle("open-menu");
@@ -26,4 +27,3 @@ document.addEventListener('click', function(event){
 document.querySelector(".user-pic").addEventListener("click", function(event) {
     toggleMenu();
 });
-

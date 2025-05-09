@@ -2,6 +2,7 @@ package com.knotSpotBackup.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -19,6 +20,10 @@ private Connection conn;
 			System.out.println("DB connection failed :" +e.getMessage());
 			e.printStackTrace();
 		}
+	}
+	
+	public Connection getConn() {
+	    return conn;
 	}
 	
 	public UserModel addUsers(UserModel users) {
@@ -64,4 +69,16 @@ private Connection conn;
 		}
 		return users;
 	}
+	
+	
+	public static boolean isDuplicated(String field, String attribute, Connection conn) throws SQLException{
+		PreparedStatement ps = conn.prepareStatement("SELECT user_id FROM users WHERE "+attribute +" = ?");
+		ps.setString(1, field);
+		ResultSet i = ps.executeQuery();
+		if(i.next()) {
+			throw new SQLException(attribute+" is already taken");
+		}
+		return false;
+	}
+
 }

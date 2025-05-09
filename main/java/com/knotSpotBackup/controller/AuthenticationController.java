@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
@@ -100,6 +102,29 @@ public class AuthenticationController extends HttpServlet {
 				//making an object of user to assign the values
 				UserModel users = new UserModel(firstName,null,lastName, age, gender, address, contact, email, username, password, role);
 				RegisterService registerService = new RegisterService();
+				
+				boolean isDuplicate = false;
+		   		
+	   			isDuplicate |= checkDuplicate(request, "email", email, "email", registerService.getConn());
+	   			isDuplicate |= checkDuplicate(request, "username", username, "username", registerService.getConn());
+	   			isDuplicate |= checkDuplicate(request, "contact", contact, "contact_no", registerService.getConn());
+	   			
+	   			if(isDuplicate) {
+	   				request.setAttribute("showRegister", true);
+	   				request.setAttribute("firstname", firstName);
+	   				request.setAttribute("lastname", lastName);
+	   				request.setAttribute("email", email);
+	   				request.setAttribute("contact", contact);
+	   				request.setAttribute("gender", gender);
+	   				request.setAttribute("address", request.getParameter("city"));
+	   				request.setAttribute("birthday", stringDob);
+	   				request.setAttribute("username", username);
+	   				request.setAttribute("role", role);
+	   				
+	   				request.getRequestDispatcher("/WEB-INF/pages/auth.jsp").forward(request, response);
+	   				return;
+	   			}
+	   			
 				UserModel createdUser = registerService.addUsers(users);
 				System.out.println("Reacher here 1");
 				if (createdUser != null) {
@@ -176,6 +201,31 @@ public class AuthenticationController extends HttpServlet {
 			ValidationUtil.isValidUserName(value, attribute);
 		}
 	}
+	
+	  public static void getDuplicateField(String field, String value, String attribute,Connection conn) throws SQLException {
+		  if(field.equalsIgnoreCase("contact")) {
+			  RegisterService.isDuplicated(value, attribute, conn);
+		  }
+		  else if(field.equalsIgnoreCase("email")) {
+			  RegisterService.isDuplicated(value, attribute, conn);
+		  }
+		  else if(field.equalsIgnoreCase("username")) {
+			  RegisterService.isDuplicated(value, attribute, conn);
+		  }
+	  }
+	  
+	  public static boolean checkDuplicate(HttpServletRequest request, String field, String value, String attribute, Connection conn) {
+		  boolean isDuplicate = false;
+		  try {
+			  getDuplicateField(field, value, attribute, conn);
+		  }
+		  catch(SQLException e) {
+			  request.setAttribute(field+"Duplicate", e.getMessage());
+			  System.out.println(e.getMessage());
+			  isDuplicate= true;
+		  }
+		  return isDuplicate;
+	  }
 	
 	
 	//login

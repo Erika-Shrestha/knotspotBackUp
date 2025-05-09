@@ -326,3 +326,17 @@ nav i{
 	font-weight:bold;
 }
 
+.menu-link.logout-button{
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  width: 100%;
+}
+
+
+.menu-link.logout-button p{
+  width: 3rem;
+  margin-right: 6.5rem;
+}
