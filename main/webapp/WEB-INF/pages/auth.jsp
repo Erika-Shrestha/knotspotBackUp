@@ -48,7 +48,7 @@
 	
 	<!-- if c tag error then show active form of register  -->
 	<div class ="form-box register">
-	<form action="${pageContext.request.contextPath}/login" method="post">
+	<form action="${pageContext.request.contextPath}/login" method="post" enctype="multipart/form-data">
 	<h1>Register</h1>
 	<div class="element-container">
 	<div class="first-con">
@@ -148,10 +148,13 @@
 	        <option value="RL2">Customer</option>
 	    </select>
 		</div>
-		<div class="file-con">
-		  <label class="file-label" for="file-upload">Upload Image</label>
-		  <input type="file" id="file-upload" class="file-box" />
-		</div>
+			<div class="file-con">
+			<c:if test="${not empty profile_imageError}">
+				<label class="errorDisplay">${profile_imageError}</label>
+			</c:if>
+			  <label class="file-label" for="file-upload">Upload Image</label>
+			  <input type="file" id="file-upload" class="file-box" name="profile_image"/>
+			</div>
 	</div>
 	<div class="check-box-con">
 	<label>

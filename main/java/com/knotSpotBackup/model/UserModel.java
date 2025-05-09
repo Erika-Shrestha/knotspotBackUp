@@ -16,10 +16,11 @@ public class UserModel {
 	private String password;
 	private LocalDate registeredDate;
 	private String role;
+	private String profilePic;
 	
-	
+
 	public UserModel(String firstName, String middleName, String lastName, int age, String gender, String address,
-			String contactNumber, String email, String username, String password, String role) {
+			String contactNumber, String email, String username, String password, String role, String profilePic) {
 
 		this.firstName = firstName;
 		this.middleName = middleName;
@@ -33,6 +34,7 @@ public class UserModel {
 		this.password = password;
 		this.registeredDate = LocalDate.now();
 		this.role = role;
+		this.profilePic = profilePic;
 	}
 
 
@@ -164,5 +166,15 @@ public class UserModel {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
+
 
 }

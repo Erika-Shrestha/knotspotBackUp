@@ -35,8 +35,8 @@ private Connection conn;
 			String hashedPassword = PasswordUtil.hashPassword(users.getPassword());
             users.setPassword(hashedPassword);
             
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO users(first_name, middle_name, last_name, age, gender, address, contact_no, email, username, password, registered_date, role_id, task_id) "
-					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO users(first_name, middle_name, last_name, age, gender, address, contact_no, email, username, password, profile_image, registered_date, role_id, task_id) "
+					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			
 			ps.setString(1, users.getFirstName());
 			ps.setString(2, users.getMiddleName());
@@ -48,9 +48,10 @@ private Connection conn;
 			ps.setString(8, users.getEmail());
 			ps.setString(9, users.getUsername());
 			ps.setString(10,hashedPassword);
-			ps.setDate(11, java.sql.Date.valueOf(LocalDate.now()));
-			ps.setString(12, users.getRole());
-			ps.setString(13, "T1");
+			ps.setString(11, users.getProfilePic());
+			ps.setDate(12, java.sql.Date.valueOf(LocalDate.now()));
+			ps.setString(13, users.getRole());
+			ps.setString(14, "T1");
 			
 			int i = ps.executeUpdate();
 			

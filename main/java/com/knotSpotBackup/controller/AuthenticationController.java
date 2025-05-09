@@ -1,14 +1,17 @@
 package com.knotSpotBackup.controller;
 
 import jakarta.servlet.ServletException;
-
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -24,6 +27,8 @@ import com.knotSpotBackup.util.ValidationUtil;
 /**
  * Servlet implementation class AuthenticationController
  */
+
+@MultipartConfig
 @WebServlet(asyncSupported = true, urlPatterns = { "/login" })
 public class AuthenticationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -53,7 +58,7 @@ public class AuthenticationController extends HttpServlet {
 		
 	}
 
-	private boolean isValidInputs(HttpServletRequest request, HttpServletResponse response, String firstName, String lastName, String dob, String gender, String contact, String email, String username, String password, String retypePassword)  throws ServletException, IOException {
+	private boolean isValidInputs(HttpServletRequest request, HttpServletResponse response, String firstName, String lastName, String dob, String gender, String contact, String email, String username, String password, String retypePassword, Part image)  throws ServletException, IOException {
 		boolean isValid = true;
 		
 		isValid &= checkInputField(request, "firstname", firstName, "first name");
@@ -64,6 +69,7 @@ public class AuthenticationController extends HttpServlet {
 		isValid &= checkInputField(request, "email", email, "Email");
 		isValid &= checkInputField(request, "username", username, "Username");
 		isValid &= checkPasswordField(request, password, retypePassword, "Password", username);
+		isValid &= checkImageField(request, "profile_image", image);
 		System.out.println("Validation is checked");
 		
 		return isValid;
@@ -94,13 +100,34 @@ public class AuthenticationController extends HttpServlet {
 			String password = request.getParameter("password");
 			String retypePassword = request.getParameter("retypePassword");
 			String role = request.getParameter("role");
+			Part image = request.getPart("profile_image");
+			String imageFilePath = image.getSubmittedFileName();
+			System.out.println("Selected file name: "+imageFilePath);
+			String uploadPath="C:/Users/eerii/eclipse-workspace/KnotSpotBackup/src/main/webapp/resources/"+imageFilePath;
+			System.out.println("uploaded file name: "+uploadPath);
 			System.out.println("Retrieved data");
-			boolean isValid = isValidInputs(request, response, firstName, lastName, stringDob, gender, contact, email, username, password, retypePassword);
+			
+			
+			try {
+				FileOutputStream fos = new FileOutputStream(uploadPath);
+				InputStream is= image.getInputStream();
+				
+				byte[] data = new byte[is.available()];
+				is.read(data);
+				fos.write(data);
+				fos.close();
+				
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			boolean isValid = isValidInputs(request, response, firstName, lastName, stringDob, gender, contact, email, username, password, retypePassword, image);
 				
 			if(isValid) {
 				System.out.println("All data is valid");
 				//making an object of user to assign the values
-				UserModel users = new UserModel(firstName,null,lastName, age, gender, address, contact, email, username, password, role);
+				UserModel users = new UserModel(firstName,null,lastName, age, gender, address, contact, email, username, password, role, imageFilePath);
 				RegisterService registerService = new RegisterService();
 				
 				boolean isDuplicate = false;
@@ -178,6 +205,18 @@ public class AuthenticationController extends HttpServlet {
 			}
 			return isValid;
 		}
+		
+		public static boolean checkImageField(HttpServletRequest request, String attribute, Part imagePart) {
+		    boolean isValid = true;
+		    try {
+		        ValidationUtil.isValidImageExtension(imagePart);
+		    } catch (IllegalArgumentException e) {
+		        request.setAttribute(attribute + "Error", e.getMessage());
+		        isValid = false;
+		    }
+		    return isValid;
+		}
+
 	
 	
 	//to differentiate methods for each fields
@@ -248,6 +287,11 @@ public class AuthenticationController extends HttpServlet {
 				//creates a session for each new users if does not exists makes one using true
 				HttpSession session = request.getSession(true);
 				session.setAttribute("username", username);
+				//adding full name to the session
+				session.setAttribute("FullName", retreivedUser.getFirstName()+" "+retreivedUser.getLastName());
+				//adding image to the session
+				session.setAttribute("profileImage", retreivedUser.getProfilePic());
+				System.out.println("Session image: "+ retreivedUser.getProfilePic());
 				System.out.println("Session ID: "+session);
 				CookieUtil.addCookie(response, "role", retreivedUser.getRole(), 15 * 60);
 				System.out.println("Login successful. Role cookie set: " + retreivedUser.getRole());
