@@ -78,7 +78,7 @@
 				</div>
 				<hr>
 				
-				<a href="#" class="menu-link">
+				<a href="${pageContext.request.contextPath}/profile" class="menu-link">
 				<i class="fa-solid fa-user"></i>
 				<p>Edit Profile</p>
 				<span>></span>

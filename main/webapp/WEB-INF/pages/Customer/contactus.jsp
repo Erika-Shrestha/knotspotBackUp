@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- This connects to dashboard.css file -->
+<!-- This connects to contact.css file -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/contactus.css">
 
 <!-- This gives access to google font "inter" -->
