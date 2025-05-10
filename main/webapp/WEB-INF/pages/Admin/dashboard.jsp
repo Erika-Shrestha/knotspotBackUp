@@ -23,75 +23,77 @@
 <!-- Body stores the content for admin page -->
 <body>
 
-<!-- This is the main wrapper -->
-<div class="main-container">
-
-<!-- This is a container that directs admin to various pages -->
-<div class="navigation"></div>
-
-<!-- This div connects head and data content -->
-<div class="joint-container">
-<!-- This is the container for search bar, user profile -->
-<div class="head-content">
-<nav>
-
-<!-- This is the image for company logo -->
-<img src="${pageContext.request.contextPath}/resources/companylogo.png" alt="company-logo" class="company-logo">
-
-
-<!-- This is for notification bell -->
-<a href="#" class="notify-link"><i class="fa-solid fa-bell"></i></a>
-
-<!-- The image is to display the pop up message -->
-<img src="${pageContext.request.contextPath}/resources/userpfp.jpg" alt="user-profile" class="user-pic" onclick="toggleMenu()">
-
-<!-- This is pop-up wrapper to display user-profile -->
-<div class="menu-container" id="menu">
-<div class="menu">
-<div class="user-info">
-<img src="${pageContext.request.contextPath}/resources/userpfp.jpg" alt="user-profile">
-<h2>James Seldon</h2>
-</div>
-<hr>
-
-<a href="#" class="menu-link">
-<i class="fa-solid fa-user"></i>
-<p>Edit Profile</p>
-<span>></span>
-</a>
-
-<a href="#" class="menu-link">
-<i class="fa-solid fa-gears"></i>
-<p>Settings & Privacy</p>
-<span>></span>
-</a>
-
-<a href="#" class="menu-link">
-<i class="fa-solid fa-circle-question"></i>
-<p>Help & Support</p>
-<span>></span>
-</a>
-
-<a href="#" class="menu-link">
-<i class="fa-solid fa-right-from-bracket"></i>
-<p>Logout</p>
-<span>></span>
-</a>
-
-</div>
-</div>
-
-</nav>
-</div>
-
-<!-- This contains each pages front content/data -->
-<div class="data-content">
-<h1>data content</h1>
-</div>
-
-</div>
-
-</div>
+	<!-- This is the main wrapper -->
+	<div class="main-container">
+	
+	<!-- This is a container that directs admin to various pages -->
+	<div class="navigation"></div>
+	
+	<!-- This div connects head and data content -->
+	<div class="joint-container">
+	<!-- This is the container for search bar, user profile -->
+	<div class="head-content">
+	<nav>
+	
+	<!-- This is the image for company logo -->
+	<img src="${pageContext.request.contextPath}/resources/companyicon.png" alt="company-logo" class="company-logo">
+	
+	
+	<!-- This is for notification bell -->
+	<a href="#" class="notify-link"><i class="fa-solid fa-bell"></i></a>
+	
+	<!-- The image is to display the pop up message -->
+	<img src="${pageContext.request.contextPath}/resources/${userModel.profilePic}" alt="user-profile" class="user-pic" onclick="toggleMenu()">
+	
+	<!-- This is pop-up wrapper to display user-profile -->
+	<div class="menu-container" id="menu">
+		<div class="menu">
+			<div class="user-info">
+				<img src="${pageContext.request.contextPath}/resources/${userModel.profilePic}" alt="user-profile">
+				<h2>${userModel.firstName} ${userModel.lastName}</h2>
+			</div>
+			<hr>
+		
+			<a href="${pageContext.request.contextPath}/profile" class="menu-link">
+			<i class="fa-solid fa-user"></i>
+			<p>Edit Profile</p>
+			<span>></span>
+			</a>
+			
+			<a href="#" class="menu-link">
+			<i class="fa-solid fa-gears"></i>
+			<p>Settings & Privacy</p>
+			<span>></span>
+			</a>
+			
+			<a href="#" class="menu-link">
+			<i class="fa-solid fa-circle-question"></i>
+			<p>Help & Support</p>
+			<span>></span>
+			</a>
+			
+			<form action="${pageContext.request.contextPath}/logout" method="post" class="logout-form">
+				  <button type="submit" class="menu-link logout-button" name="logout" value="logout">
+				    <i class="fa-solid fa-right-from-bracket"></i>
+				    <p>Logout</p>
+				    <span>></span>
+				  </button>
+				</form>	
+		</div>
+	</div>
+	
+	</nav>
+	</div>
+	
+	<!-- This contains each pages front content/data -->
+	<div class="data-content">
+	<h1>data content</h1>
+	<a href="${pageContext.request.contextPath}/management">Venue management page</a>
+	</div>
+	
+	</div>
+	
+	</div>
 
 </body>
 </html>
