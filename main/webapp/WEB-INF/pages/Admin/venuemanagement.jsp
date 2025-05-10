@@ -43,7 +43,7 @@
 				<i class="fa fa-filter" aria-hidden="true"></i>
 				<label>Filters</label>
 			</div>
-			<i class="fa-solid fa-plus"></i>
+			<button class="add-btn" id="open"><i class="fa-solid fa-plus"></i></button>
 		</div>
 		<div class="table-container">
 		  <table class="venue-table">
@@ -91,6 +91,20 @@
 		  </div>
 		</div>
 	</section>
+	
+	<div class="modal-container" id="modal-container">
+		<div class="modal">
+		<h1>Venue Detail</h1>
+		<input type="text">
+		<input type="text">
+		<input type="text">
+		<input type="text">
+		<input type="text">
+		<input type="text">
+		<input type="text">
+		<button id="close">Close</button>
+		</div>
+	</div>
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/venuemanagement.js"></script>
 </body>

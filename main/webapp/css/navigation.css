@@ -308,6 +308,22 @@ header .image-text .header-text{
 	left: 1.8rem;
 }
 
+.nav-body.dark .home{
+	color: black;
+}
+
+.nav-body.dark .home i{
+	color: black;
+}
+
+.nav-body.dark .home .notify-link i, .nav-body.dark .home .venue-title label{
+	color: #FFF;
+}
+
+.nav-body.dark .modal-container h1{
+	color: black;
+}
+
 .home{
 	position: relative;
 	height: 100vh;
