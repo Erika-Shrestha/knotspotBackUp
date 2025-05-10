@@ -17,6 +17,7 @@ public class UserModel {
 	private LocalDate registeredDate;
 	private String role;
 	private String profilePic;
+	private String roleName;
 	
 
 	public UserModel(String firstName, String middleName, String lastName, int age, String gender, String address,
@@ -174,6 +175,20 @@ public class UserModel {
 	public void setProfilePic(String profilePic) {
 		this.profilePic = profilePic;
 	}
+
+
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+	
+	
 
 
 

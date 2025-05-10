@@ -67,14 +67,14 @@
 			<div class="user-con">
 				<a href="" class="favorite-icon"><i class="fa-regular fa-heart"></i></a>
 				<!-- The image is to display the pop up message -->
-				<img src="${pageContext.request.contextPath}/resources/${profileImage}" alt="user-profile" class="user-pic" onclick="toggleMenu()">
+				<img src="${pageContext.request.contextPath}/resources/${userModel.profilePic}" alt="user-profile" class="user-pic" onclick="toggleMenu()">
 				
 				<!-- This is pop-up wrapper to display user-profile -->
 				<div class="menu-container" id="menu">
 				<div class="menu">
 				<div class="user-info">
-				<img src="${pageContext.request.contextPath}/resources/${profileImage}" alt="user-profile">
-				<h2>${FullName}</h2>
+				<img src="${pageContext.request.contextPath}/resources/${userModel.profilePic}" alt="user-profile">
+				<h2>${userModel.firstName} ${userModel.lastName}</h2>
 				</div>
 				<hr>
 				

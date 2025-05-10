@@ -287,12 +287,11 @@ public class AuthenticationController extends HttpServlet {
 				//creates a session for each new users if does not exists makes one using true
 				HttpSession session = request.getSession(true);
 				session.setAttribute("username", username);
-				//adding full name to the session
-				session.setAttribute("FullName", retreivedUser.getFirstName()+" "+retreivedUser.getLastName());
 				//adding image to the session
-				session.setAttribute("profileImage", retreivedUser.getProfilePic());
 				System.out.println("Session image: "+ retreivedUser.getProfilePic());
 				System.out.println("Session ID: "+session);
+				//setting session attribute
+				session.setAttribute("userModel", retreivedUser);
 				CookieUtil.addCookie(response, "role", retreivedUser.getRole(), 15 * 60);
 				System.out.println("Login successful. Role cookie set: " + retreivedUser.getRole());
 				String role = retreivedUser.getRole();

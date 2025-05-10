@@ -65,6 +65,10 @@ a{
 	color: black;
 }
 
+.file-box{
+  display: none;
+}
+
 .buttons{
 	position: absolute;
 	display: flex;
@@ -78,6 +82,11 @@ p{
 	margin-top: 3.5rem;
 	line-height: 1.2rem;
 	color: white;
+}
+
+.upload-file{
+	width: 8rem;
+	height: 2.5rem;
 }
 
 button{
@@ -102,7 +111,17 @@ button{
 }
 
 .change-btn{
+	display: inline-block;
+	margin-top: 1rem;
 	background: #007BFF;
+	padding: 0.5rem 0.8rem;
+	font-size: 0.8rem;
+	color:white;
+	border-radius: 0.7rem;
+	box-shadow: 0 0 0.5rem rgba(0,0,0,0.1);
+	border: none;
+	outline: none;
+	cursor: pointer;
 }
 
 .del-btn{
