@@ -13,12 +13,12 @@ public class VenueModel {
 	private String amenities;
 	private String type;
 	private LocalDate registeredDate;
+	private String venuePic;
 	private String status;
 	
-	public VenueModel(int venueId, String name, String address, String city, String contactNumber, int capacity,
-			String amenities, String type, String status) {
-		super();
-		this.venueId = venueId;
+	public VenueModel(String name, String address, String city, String contactNumber, int capacity,
+			String amenities, String type, String venuePic, String status) {
+		
 		this.name = name;
 		this.address = address;
 		this.city = city;
@@ -27,6 +27,7 @@ public class VenueModel {
 		this.amenities = amenities;
 		this.type = type;
 		this.registeredDate = LocalDate.now();
+		this.venuePic = venuePic;
 		this.status = status;
 	}
 
@@ -96,6 +97,14 @@ public class VenueModel {
 	
 	public LocalDate getRegisteredDate() {
 		return registeredDate;
+	}
+
+	public String getVenuePic() {
+		return venuePic;
+	}
+
+	public void setVenuePic(String venuePic) {
+		this.venuePic = venuePic;
 	}
 
 	public String getStatus() {

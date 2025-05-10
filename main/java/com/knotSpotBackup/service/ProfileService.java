@@ -26,9 +26,7 @@ public class ProfileService {
 	        String updateSql = "UPDATE users SET first_name = ?, last_name = ?, username = ?, email = ?, contact_no = ?, gender = ?, profile_image = ? WHERE user_id = ?";
 	        String selectSql = "SELECT u.first_name, u.last_name, u.username, u.email, u.contact_no, u.gender, u.role_id, u.profile_image, r.user_role FROM users u JOIN userrole r ON u.role_id = r.role_id WHERE u.user_id = ?";
 	        
-	        System.out.println("Updating user with ID: " + user.getUserId());
-	        System.out.println("Update SQL values:");
-	        System.out.println(user.getFirstName() + ", " + user.getLastName() + ", " + user.getUsername() + ", " + user.getEmail() + ", " + user.getContactNumber() + ", " + user.getGender());
+	        
 	        try (PreparedStatement ps = conn.prepareStatement(updateSql)) {
 	        	ps.setString(1, user.getFirstName()); 
 	            ps.setString(2, user.getLastName());
@@ -40,7 +38,6 @@ public class ProfileService {
 	            ps.setInt(8, user.getUserId());
 
 	            int updateDetail = ps.executeUpdate();
-	            System.out.println("Update result (affected rows): " + updateDetail);
 
 	            if(updateDetail >0) {
 	            	

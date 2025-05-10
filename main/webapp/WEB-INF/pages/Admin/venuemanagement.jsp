@@ -53,9 +53,12 @@
 		        <th>ID</th>
 		        <th>Venue</th>
 		        <th>Location</th>
-		        <th>Priority</th>
+		        <th>Contact Info</th>
+		        <th>Capacity</th>
+		        <th>Amenities</th>
 		        <th>Date</th>
-		        <th>Owner</th>
+		        <th>Type</th>
+		        <th>Status</th>
 		        <th>Actions</th>
 		      </tr>
 		    </thead>
@@ -65,9 +68,12 @@
 		        <td>FIG-123</td>
 		        <td>Venue 1</td>
 		        <td>Lalitpur</td>
-		        <td><span class="badge high">High</span></td>
-		        <td>Dec 5</td>
-		        <td><img src="owner.jpg" class="avatar" alt="Owner"></td>
+		        <td>9832465421</td>
+		        <td>300</td>
+		        <td>High furnished bed</td>
+		        <td>9th June 2020</td>
+		        <td>Ballroom</td>
+		        <td><span class="badge high">Available</span></td>
 		        <td class="actions">
 		          	<button><i class="fas fa-pen"></i></button>
   					<button><i class="fas fa-eye" onclick="openPanel()"></i></button>
