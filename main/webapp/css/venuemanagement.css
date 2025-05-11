@@ -237,5 +237,35 @@
 	opacity: 0.7;
 }
 
+.form-grid {
+  	display: grid;
+  	grid-template-columns: 1fr 1fr;
+  	gap: 1rem;
+}
+
+.form-grid input, .form-grid select, .form-grid .file-con {
+  	width: 100%;
+  	box-sizing: border-box;
+}
+
+.file-box {
+  	display: none; 
+}
+
+.file-label {
+  	display: inline-block;
+  	margin-bottom: 0.4rem;
+  	padding: 0.5rem 0.7rem;
+  	background-color: #4CAF50;
+  	color: white;
+  	font-weight: bold;
+  	cursor: pointer;
+  	border-radius: 0.2rem;
+  	transition: background-color 0.3s ease;
+}
+
+.file-label:hover {
+  	background-color: #45a049;
+}
 
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,7 @@
 				<i class="fa fa-filter" aria-hidden="true"></i>
 				<label>Filters</label>
 			</div>
-			<button class="add-btn" id="open"><i class="fa-solid fa-plus"></i></button>
+			<button class="add-btn" id="openCreate"><i class="fa-solid fa-plus"></i></button>
 		</div>
 		<div class="table-container">
 		  <table class="venue-table">
@@ -63,23 +64,33 @@
 		      </tr>
 		    </thead>
 		    <tbody>
+		    <c:forEach var="venue" items="${listVenue}">
 		      <tr>
 		        <td><input type="checkbox"></td>
-		        <td>FIG-123</td>
-		        <td>Venue 1</td>
-		        <td>Lalitpur</td>
-		        <td>9832465421</td>
-		        <td>300</td>
-		        <td>High furnished bed</td>
-		        <td>9th June 2020</td>
-		        <td>Ballroom</td>
-		        <td><span class="badge high">Available</span></td>
+		        <td><c:out value='${venue.venueId}'/></td>
+		        <td><c:out value='${venue.name}'/></td>
+		        <td><c:out value='${venue.address}'/></td>
+		        <td><c:out value='${venue.contactNumber}'/></td>
+		        <td><c:out value='${venue.capacity}'/></td>
+		        <td><c:out value='${venue.amenities}'/></td>
+		        <td><c:out value='${venue.registeredDate}'/></td>
+		        <td><c:out value='${venue.type}'/></td>
+		        <td><span class="badge high"><c:out value='${venue.status}'/></span></td>
 		        <td class="actions">
-		          	<button><i class="fas fa-pen"></i></button>
+    				<form action="${pageContext.request.contextPath}/management" method="get">
+				        <input type="hidden" name="action" value="edit">
+				        <input type="hidden" name="venue_id" value="${venue.venueId}">
+				        <button type="submit" class="edit-btn"><i class="fas fa-pen"></i></button>
+				    </form>
   					<button><i class="fas fa-eye" onclick="openPanel()"></i></button>
-  					<button><i class="fas fa-trash"></i></button>
+  					<form action="${pageContext.request.contextPath}/management" method="post">
+  						<input type="hidden" name="action" value="delete">
+  						<input type="hidden" name="venue_id" value="<c:out value='${venue.venueId}'/>">
+    					<button type="submit"><i class="fas fa-trash"></i></button>
+		        	</form>
 		        </td>
 		      </tr>
+		    </c:forEach>
 		    </tbody>
 		  </table>
 		</div>
@@ -92,20 +103,85 @@
 		</div>
 	</section>
 	
-	<div class="modal-container" id="modal-container">
+	<div class="modal-container" id="modal-container-add">
 		<div class="modal">
 		<h1>Venue Detail</h1>
-		<input type="text">
-		<input type="text">
-		<input type="text">
-		<input type="text">
-		<input type="text">
-		<input type="text">
-		<input type="text">
-		<button id="close">Close</button>
+		<form action="${pageContext.request.contextPath}/management" method="post" class="form-grid" id="venue-form" enctype="multipart/form-data">
+			<input type="hidden" name="action" value="create">
+			<input type="text" name="venue_name" placeholder="venue name">
+			<input type="text" name="address" placeholder ="address">
+			<input type="text" name="city" placeholder="city">
+			<input type="text" name="contact" placeholder="phone number">
+			<input type="text" name="capacity" placeholder="capacity">
+			<input type="text" name="amenities" placeholder="Amenities">
+			<div class="input-box">
+				<select class="type" name="venue_type" required>
+					<option value="" disabled>Type</option>
+					<option value="Ballroom" ${type == 'Ballroom' ? 'selected' : ''}>Ballroom</option>
+					<option value="Banquet Hall" ${type == 'Banquet Hall' ? 'selected' : ''}>Banquet Hall</option>
+				</select>
+			</div>
+			
+			<div class="input-box">
+				<select class="status" name="status" required>
+					<option value="" disabled>Status</option>
+					<option value="Available" ${status == 'Available' ? 'selected' : ''}>Available</option>
+					<option value="Non-Available" ${status == 'Non-Available' ? 'selected' : ''}>Non-Available</option>
+				</select>
+			</div>
+			<div class="file-con">
+				  <label class="file-label" for="file-upload">Upload Image</label>
+				  <input type="file" id="file-upload" class="file-box" name="venue_image"/>
+			</div>
+			<button type="submit">Submit</button>
+		</form>
+		<button id="closeCreate">Close</button>
+		</div>
+	</div>
+	
+	<div class="modal-container" id="modal-container-edit">
+		<div class="modal">
+		<h1>Venue Detail</h1>
+			<form action="${pageContext.request.contextPath}/management" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="action" value="update">
+				<input type="hidden" name="venue_id" value="${selectedVenue.venueId}">
+				<input type="text" name="venue_name" placeholder ="name" value="${selectedVenue.name}">
+				<input type="text" name="address" placeholder ="address" value="${selectedVenue.address}">
+				<input type="text" name="city" placeholder="city" value="${selectedVenue.city}">
+				<input type="text" name="contact" placeholder="phone number" value="${selectedVenue.contactNumber}">
+				<input type="text" name="capacity" placeholder="capacity" value="${selectedVenue.capacity}">
+				<input type="text" name="amenities" placeholder="Amenities" value="${selectedVenue.amenities}">
+				<div class="input-box">
+	              	<select class="type" name="venue_type" required>
+	                	<option value="" disabled>Type</option>
+	                	<option value="Ballroom" ${selectedVenue.type == 'Ballroom' ? 'selected' : ''}>Ballroom</option>
+	                	<option value="Banquet Hall" ${selectedVenue.type == 'Banquet Hall' ? 'selected' : ''}>Banquet Hall</option>
+	              	</select>
+            	</div>
+            	<div class="input-box">
+                	<select class="status" name="status" required>
+                    	<option value="" disabled>Status</option>
+                    	<option value="Available" ${selectedVenue.status == 'Available' ? 'selected' : ''}>Available</option>
+                    	<option value="Non-Available" ${selectedVenue.status == 'Non-Available' ? 'selected' : ''}>Non-Available</option>
+                	</select>
+            	</div>
+				<div class="file-con">
+				  <label class="file-label" for="file-upload">Change Image</label>
+				  <input type="file" id="file-upload" class="file-box" name="venue_image"/>
+				</div>
+				<button type="submit">Save changes</button>
+			</form>
+			<form action="${pageContext.request.contextPath}/management" method="get">
+            	<button type="submit" id="closeEdit">Close</button>
+        	</form>
 		</div>
 	</div>
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/venuemanagement.js"></script>
+	<script>
+        <c:if test="${not empty selectedVenue}">
+            document.getElementById('modal-container-edit').classList.add('show');
+        </c:if>
+    </script>
 </body>
 </html>

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.knotSpotBackup.config.DdConfig;
 import com.knotSpotBackup.model.VenueModel;
@@ -153,6 +155,80 @@ public class CrudService {
 		
 		return venues;
 	
+	}
+	
+	
+	public List<VenueModel> selectAllVenues() {
+		List<VenueModel> venues = new ArrayList<>();
+		if(conn == null) {
+			System.out.println("DB connection failed");
+		}
+		
+		try {
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT venue_id, name, address, city, contact_no, capacity, amenities, type, registered_date, venue_picture, status FROM venues");
+			
+			ResultSet i = ps.executeQuery();
+			
+			while(i.next()) {
+				int id= i.getInt("venue_id");
+				String name= i.getString("name");
+				String address= i.getString("address");
+				String city= i.getString("city");
+				String contact= i.getString("contact_no");
+				int capacity= i.getInt("capacity");
+				String amenities= i.getString("amenities");
+				String type= i.getString("type");
+				LocalDate registeredDate = i.getDate("registered_date").toLocalDate();
+				String image = i.getString("venue_picture");
+				String status = i.getString("status");
+				VenueModel venue = new VenueModel(id, name, address, city, contact, capacity, amenities, type, registeredDate, image, status);
+				venues.add(venue);
+				System.out.println("Fetched Venue: " + i.getString("name"));
+			}
+			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Fetched venues: " + venues.size());
+		return venues;
+	}
+	
+	public VenueModel selectVenueById(int venueId) {
+		if(conn == null) {
+			System.out.println("DB connection failed");
+		}
+		
+		VenueModel venue = null;
+		
+		try {
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT name, address, city, contact_no, capacity, amenities, type, venue_picture, status FROM venues WHERE venue_id = ?");
+			ps.setInt(1, venueId);
+			
+			ResultSet i = ps.executeQuery();
+			
+			while(i.next()) {
+				String name= i.getString("name");
+				String address= i.getString("address");
+				String city= i.getString("city");
+				String contact= i.getString("contact_no");
+				int capacity= i.getInt("capacity");
+				String amenities= i.getString("amenities");
+				String type= i.getString("type");
+				String image = i.getString("venue_picture");
+				String status = i.getString("status");
+				venue = new VenueModel(name, address, city, contact, capacity, amenities, type, image, status);
+				venue.setVenueId(venueId);
+				System.out.println("Fetched Venue: " + venueId);
+			}
+			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return venue;
 	}
 	
 	

@@ -76,7 +76,7 @@ public class AuthenticationFilter implements Filter {
 		    if ("RL1".equalsIgnoreCase(userRole)) {
 		        if (url.endsWith(login)) {
 		            res.sendRedirect(req.getContextPath() + dashboard);
-		        } else if (url.endsWith(dashboard) || url.endsWith(management) || url.endsWith(setting)
+		        } else if (url.endsWith(dashboard) || url.contains(management) || url.endsWith(setting)
 		                || url.endsWith(profile) || url.endsWith(analytics) || url.endsWith(task) || url.endsWith("/")) {
 		        	chain.doFilter(request, response);
 		        } else {
