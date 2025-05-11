@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" >
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <!-- This gives access to font awesome icons -->
@@ -100,55 +101,14 @@
 			<div class="container swiper">
 				<div class="slider-wrapper">
 					<div class="card-list swiper-wrapper">
+					<c:forEach var="venue" items="${listVenue}">
 						<div class="card-item swiper-slide">
 							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
-							<h2 class="venue-name">Venue Name</h2>
-							<p class="venue-desc">This is a description.</p>
+							<h2 class="venue-name">${venue.name}</h2>
+							<p class="venue-desc">${venue.amenities}</p>
 							<button class="venue-button">View</button>
 						</div>
-						<div class="card-item swiper-slide">
-							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
-							<h2 class="venue-name">Venue Name</h2>
-							<p class="venue-desc">This is a description.</p>
-							<button class="venue-button">View</button>
-						</div>
-						<div class="card-item swiper-slide">
-							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
-							<h2 class="venue-name">Venue Name</h2>
-							<p class="venue-desc">This is a description.</p>
-							<button class="venue-button">View</button>
-						</div>
-						<div class="card-item swiper-slide">
-							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
-							<h2 class="venue-name">Venue Name</h2>
-							<p class="venue-desc">This is a description.</p>
-							<button class="venue-button">View</button>
-						</div>
-						<div class="card-item swiper-slide">
-							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
-							<h2 class="venue-name">Venue Name</h2>
-							<p class="venue-desc">This is a description.</p>
-							<button class="venue-button">View</button>
-						</div>
-						<div class="card-item swiper-slide">
-							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
-							<h2 class="venue-name">Venue Name</h2>
-							<p class="venue-desc">This is a description.</p>
-							<button class="venue-button">View</button>
-						</div>
-						<div class="card-item swiper-slide">
-							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
-							<h2 class="venue-name">Venue Name</h2>
-							<p class="venue-desc">This is a description.</p>
-							<button class="venue-button">View</button>
-						</div>
-						<div class="card-item swiper-slide">
-							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
-							<h2 class="venue-name">Venue Name</h2>
-							<p class="venue-desc">This is a description.</p>
-							<button class="venue-button">View</button>
-						</div>
-						
+					</c:forEach>
 					</div>
 					<div class="swiper-pagination"></div>
 					<div class="swiper-slide-button swiper-button-prev"></div>
