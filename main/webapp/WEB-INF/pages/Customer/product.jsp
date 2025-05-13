@@ -35,6 +35,7 @@
 				<button type="submit" class="search-btn">
             		<i class="fa-solid fa-magnifying-glass"></i>
         		</button>
+        		<button type="submit" name="search_bar" value="">Clear Search</button>
 			</div>
 		</form>
 		<div class="venue-div">

@@ -83,7 +83,7 @@
 				        <button type="submit" class="edit-btn"><i class="fas fa-pen"></i></button>
 				    </form>
   					<button><i class="fas fa-eye" onclick="openPanel()"></i></button>
-  					<form action="${pageContext.request.contextPath}/management" method="post">
+  					<form action="${pageContext.request.contextPath}/management" method="post" onsubmit="return confirm('Are you sure you want to delete this venue?');">
   						<input type="hidden" name="action" value="delete">
   						<input type="hidden" name="venue_id" value="<c:out value='${venue.venueId}'/>">
     					<button type="submit"><i class="fas fa-trash"></i></button>
@@ -108,12 +108,49 @@
 		<h1>Venue Detail</h1>
 		<form action="${pageContext.request.contextPath}/management" method="post" class="form-grid" id="venue-form" enctype="multipart/form-data">
 			<input type="hidden" name="action" value="create">
-			<input type="text" name="venue_name" placeholder="venue name">
-			<input type="text" name="address" placeholder ="address">
-			<input type="text" name="city" placeholder="city">
-			<input type="text" name="contact" placeholder="phone number">
-			<input type="text" name="capacity" placeholder="capacity">
-			<input type="text" name="amenities" placeholder="Amenities">
+			<div>
+			<c:if test="${not empty nameError}">
+				<label class="errorDisplay name">${nameError}</label>
+			</c:if>
+			<input type="text" name="venue_name" placeholder="venue name" value="${venueName}">
+			</div>
+			<div>
+			<c:if test="${not empty addressError}">
+				<label class="errorDisplay email">${addressError}</label>
+			</c:if>
+				<input type="text" name="address" placeholder ="address" value="${address}">
+			</div>
+			<div>
+				<input type="text" name="city" placeholder="city" value="${city}">
+			</div>
+			<div>
+			<c:if test="${not empty contactError}">
+				<label class="errorDisplay email">${contactError}</label>
+			</c:if>
+			<c:if test="${not empty contactDuplicate}">
+				<label class="errorDisplay contact">${contactDuplicate}</label>
+			</c:if>
+			<input type="text" name="contact" placeholder="phone number" value="${contact}">
+			</div>
+			<div>
+				<div class="input-box">
+				<select name="capacity" required>
+					<option value="" disabled selected>Select capacity</option>
+					<option value="50" ${capacity == '50' ? 'selected' : ''}>50</option>
+					<option value="100" ${capacity == '100' ? 'selected' : ''}>100</option>
+					<option value="150" ${capacity == '150' ? 'selected' : ''}>150</option>
+					<option value="200" ${capacity == '200' ? 'selected' : ''}>200</option>
+					<option value="250" ${capacity == '250' ? 'selected' : ''}>250</option>
+					<option value="500" ${capacity == '500' ? 'selected' : ''}>500</option>
+				</select>
+			</div>
+			</div>
+			<div>
+			<c:if test="${not empty amenitiesError}">
+				<label class="errorDisplay email">${amenitiesError}</label>
+			</c:if>
+				<input type="text" name="amenities" placeholder="Amenities" value="${amenities}">
+			</div>
 			<div class="input-box">
 				<select class="type" name="venue_type" required>
 					<option value="" disabled>Type</option>
@@ -131,7 +168,7 @@
 			</div>
 			<div class="file-con">
 				  <label class="file-label" for="file-upload">Upload Image</label>
-				  <input type="file" id="file-upload" class="file-box" name="venue_image"/>
+				  <input type="file" id="file-upload" class="file-box" name="venue_image" value="${image}"/>
 			</div>
 			<button type="submit">Submit</button>
 		</form>
@@ -142,15 +179,48 @@
 	<div class="modal-container" id="modal-container-edit">
 		<div class="modal">
 		<h1>Venue Detail</h1>
-			<form action="${pageContext.request.contextPath}/management" method="post" enctype="multipart/form-data">
+			<form action="${pageContext.request.contextPath}/management" method="post" enctype="multipart/form-data" onsubmit="return confirm('Are you sure you want to update this venue?');">
 				<input type="hidden" name="action" value="update">
 				<input type="hidden" name="venue_id" value="${selectedVenue.venueId}">
+				<div>
+				<c:if test="${not empty nameError}">
+					<label class="errorDisplay name">${nameError}</label>
+				</c:if>
 				<input type="text" name="venue_name" placeholder ="name" value="${selectedVenue.name}">
+				</div>
+				<div>
+				<c:if test="${not empty addressError}">
+					<label class="errorDisplay name">${addressError}</label>
+				</c:if>
 				<input type="text" name="address" placeholder ="address" value="${selectedVenue.address}">
+				</div>
 				<input type="text" name="city" placeholder="city" value="${selectedVenue.city}">
+				<div>
+				<c:if test="${not empty contactError}">
+					<label class="errorDisplay email">${contactError}</label>
+				</c:if>
+				<c:if test="${not empty contactDuplicate}">
+					<label class="errorDisplay contact">${contactDuplicate}</label>
+				</c:if>
 				<input type="text" name="contact" placeholder="phone number" value="${selectedVenue.contactNumber}">
-				<input type="text" name="capacity" placeholder="capacity" value="${selectedVenue.capacity}">
+				</div>
+				<div class="input-box">
+					<select name="capacity" required>
+						<option value="" disabled selected>Select capacity</option>
+						<option value="50" ${selectedVenue.capacity == '50' ? 'selected' : ''}>50</option>
+						<option value="100" ${selectedVenue.capacity == '100' ? 'selected' : ''}>100</option>
+						<option value="150" ${selectedVenue.capacity== '150' ? 'selected' : ''}>150</option>
+						<option value="200" ${selectedVenue.capacity == '200' ? 'selected' : ''}>200</option>
+						<option value="250" ${selectedVenue.capacity == '250' ? 'selected' : ''}>250</option>
+						<option value="500" ${selectedVenue.capacity == '500' ? 'selected' : ''}>500</option>
+					</select>
+				</div>
+				<div>
+				<c:if test="${not empty amenitiesError}">
+					<label class="errorDisplay name">${amenitiesError}</label>
+				</c:if>
 				<input type="text" name="amenities" placeholder="Amenities" value="${selectedVenue.amenities}">
+				</div>
 				<div class="input-box">
 	              	<select class="type" name="venue_type" required>
 	                	<option value="" disabled>Type</option>
@@ -166,7 +236,6 @@
                 	</select>
             	</div>
 				<div class="file-con">
-				  <label class="file-label" for="file-upload">Change Image</label>
 				  <input type="file" id="file-upload" class="file-box" name="venue_image"/>
 				</div>
 				<button type="submit">Save changes</button>
@@ -183,5 +252,19 @@
             document.getElementById('modal-container-edit').classList.add('show');
         </c:if>
     </script>
+    <c:if test="${showCreateModal}">
+	    <script>
+	        window.addEventListener('DOMContentLoaded', () => {
+	            document.getElementById('modal-container-add')?.classList.add('show');
+	        });
+	    </script>
+	</c:if>
+	<c:if test="${showEditModal}">
+	    <script>
+	        window.addEventListener('DOMContentLoaded', () => {
+	            document.getElementById('modal-container-edit')?.classList.add('show');
+	        });
+	    </script>
+	</c:if>
 </body>
 </html>

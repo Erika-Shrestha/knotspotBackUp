@@ -336,3 +336,9 @@ header .image-text .header-text{
 	left: 4rem;
 	width: calc(100% - 4rem);
 }
+
+.menu-link.logout-button{
+	border: none;
+	background-color: transparent;
+
+}

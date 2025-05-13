@@ -190,4 +190,17 @@ input{
   	background-color: #fcfcfc;
 }
 
-
+.errorDisplay{
+	display: flex;
+	position: absolute;
+	width: 10rem;
+	height: 1rem;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0.1rem;
+	font-size: 0.5rem;
+	background-color: #FDCAC4;
+	color: #ED6160;
+	top: 30%;
+	left: 70%;
+}

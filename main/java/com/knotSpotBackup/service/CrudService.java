@@ -231,5 +231,30 @@ public class CrudService {
 		return venue;
 	}
 	
+	//Check duplicates
+	public static boolean isDuplicated(String field, String attribute, Connection conn) throws SQLException{
+		PreparedStatement ps = conn.prepareStatement("SELECT venue_id FROM venues WHERE "+attribute +" = ?");
+		ps.setString(1, field);
+		ResultSet i = ps.executeQuery();
+		if(i.next()) {
+			throw new SQLException(attribute+" is already taken");
+		}
+		return false;
+	}
+	
+	//Check duplicates excluding the current venue
+    public static boolean isDuplicated(String field, String attribute, Connection conn, int venueId) throws SQLException {
+        String query = "SELECT venue_id FROM venues WHERE " + attribute + " = ? AND venue_id != ?";
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, field);
+            ps.setInt(2, venueId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                throw new SQLException(attribute + " is already taken");
+            }
+            return false;
+        }
+    }
+	
 	
 }

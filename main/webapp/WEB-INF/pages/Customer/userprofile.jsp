@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,9 @@
 					<img src="${pageContext.request.contextPath}/resources/${userModel.profilePic}" alt="user-img" class="user-img">
 					<div class="buttons">
 						<div class="upload-file">
+							<c:if test="${not empty venue_pictureError}">
+								<label class="errorDisplay email">${venue_pictureError}</label>
+							</c:if>
 							<label class="change-btn" for="file-upload">Change picture</label>
 				  			<input type="file" id="file-upload" class="file-box" name="profile_image"/>
 			  			</div>
@@ -33,21 +37,48 @@
 				</div>
 				<div class="sec-sub-con">
 					<div class="detail-row light">
-					  <div class="field">Name</div><div class="colon">:</div><div class="input-name"><input type="text" name="first_name" value="${userModel.firstName}"/><input type="text" name="last_name" value="${userModel.lastName}"/></div>
+					<c:if test="${not empty firstnameError}">
+						<label class="errorDisplay name">${firstnameError}</label>
+					</c:if>
+					<c:if test="${not empty lastnameError}">
+						<label class="errorDisplay name">${lastnameError}</label>
+					</c:if>
+					  <div class="field">Name</div><div class="colon">:</div><div class="input-name">
+						<input type="text" name="first_name" value="${userModel.firstName}"/><input type="text" name="last_name" value="${userModel.lastName}"/></div>
 					</div>
 					<div class="detail-row white">
 					  <div class="field">Role</div><div class="colon">:</div><div class="inputs"><input type="text" name="role_id" value="${userModel.roleName}" readonly/></div>
 					</div>
 					<div class="detail-row light">
-					  <div class="field">Email</div><div class="colon">:</div><div class="inputs"><input type="email" name="email" value="${userModel.email}"/></div>
+					<div class="field">Email</div><div class="colon">:</div><div class="inputs">
+					<c:if test="${not empty emailError}">
+						<label class="errorDisplay email">${emailError}</label>
+					</c:if>
+					<c:if test="${not empty emailDuplicate}">
+        				<label class="errorDisplay email">${emailDuplicate}</label>
+    				</c:if>
+					<input type="email" name="email" value="${userModel.email}"/></div>
 					</div>
 					<div class="detail-row white">
-					  <div class="field">Contact</div><div class="colon">:</div><div class="inputs"><input type="tel" name="contact_no" value="${userModel.contactNumber}"/></div>
+					  <div class="field">Contact</div><div class="colon">:</div><div class="inputs">
+					  	<c:if test="${not empty contactError}">
+							<label class="errorDisplay contact">${contactError}</label>
+					  	</c:if>
+						<c:if test="${not empty contactDuplicate}">
+							<label class="errorDisplay contact">${contactDuplicate}</label>
+						</c:if>
+					  <input type="tel" name="contact_no" value="${userModel.contactNumber}"/></div>
 					</div>
 					<div class="detail-row light">
 					  <div class="field">Gender</div><div class="colon">:</div><div class="inputs"><input type="text" name="gender" value="${userModel.gender}"/></div>
 					</div>
 					<div class="detail-row white">
+					<c:if test="${not empty usernameError}">
+						<label class="errorDisplay username">${usernameError}</label>
+					</c:if>
+					<c:if test="${not empty usernameDuplicate}">
+						<label class="errorDisplay username">${usernameDuplicate}</label>
+					</c:if>
 					  <div class="field">Username</div><div class="colon">:</div><div class="inputs"><input type="text" name="username" value="${userModel.username}"/></div>
 					</div>
 				</div>

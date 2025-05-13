@@ -1,9 +1,16 @@
 package com.knotSpotBackup.util;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.regex.Pattern;
 
+import com.knotSpotBackup.service.CrudService;
+import com.knotSpotBackup.service.ProfileService;
+import com.knotSpotBackup.service.RegisterService;
+
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
 
 public class ValidationUtil {
@@ -15,7 +22,9 @@ public class ValidationUtil {
 	private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
 	private static final Pattern USERNAME_PATTERN = Pattern.compile("^(?=.*[a-zA-Z])[a-zA-Z][a-zA-Z0-9_-]{3,19}$");
 	private static final Pattern ALPHABETIC_PATTERN = Pattern.compile("^[A-Za-z\\s]+$");
-	
+	private static final Pattern ADDRESS_PATTERN = Pattern.compile("^[\\w\\s.,#\\-/]{1,200}$");
+	private static final Pattern AMENITIES_PATTERN = Pattern.compile("^[A-Za-z0-9\\s,.-]{1,200}$");
+
 	//to check if the field is null or empty
 	public static void isNullorEmpty(String value, String attribute) {
 		if(value == null || value.trim().isEmpty()) {
@@ -95,6 +104,7 @@ public class ValidationUtil {
 		isNullorEmpty(dob, attribute);
 	}
 	
+	
 	//to check if two-step confirmation password matches
 	public static void doPasswordsMatch(String password, String retypePassword, String attribute, String username) {
 		isNullorEmpty(password, attribute);
@@ -122,6 +132,216 @@ public class ValidationUtil {
         }
         
     }
+	
+	//to check if the venue address input is valid
+	public static void isValidVenueAddress(String address, String attribute) {
+		isNullorEmpty(address, attribute);
+		String trimmedAddress = address.trim();
+		if (!ADDRESS_PATTERN.matcher(trimmedAddress).matches()) {
+	        throw new IllegalArgumentException(attribute + " must contain only letters, numbers, spaces, and the characters.");
+	    }
+	    if (trimmedAddress.length() < 5) {
+	        throw new IllegalArgumentException(attribute + " is too short (minimum 5 characters).");
+	    } else if (trimmedAddress.length() > 200) {
+	        throw new IllegalArgumentException(attribute + " is too long (maximum 200 characters).");
+	    }
+	}
+	
+	//to check if the venue amenities input is valid 
+	public static void isValidVenueAmenities(String amenities, String attribute) {
+		isNullorEmpty(amenities, attribute);
+		String trimmedAmenities = amenities.trim();
+		if (!AMENITIES_PATTERN.matcher(trimmedAmenities).matches()) {
+	        throw new IllegalArgumentException(attribute + " must contain only letters, numbers, spaces, commas, and hyphens.");
+	    }
+	    if (trimmedAmenities.length() < 5) {
+	        throw new IllegalArgumentException(attribute + " is too short (minimum 5 characters).");
+	    } else if (trimmedAmenities.length() > 200) {
+	        throw new IllegalArgumentException(attribute + " is too long (maximum 200 characters).");
+	    }
+	}
+	
+	//to differentiate methods for each venue fields
+	public static void getInputVenueField(String field, String value, String attribute) {
+		if(field.equalsIgnoreCase("name")) {
+			ValidationUtil.isValidName(value, attribute);
+		}
+		else if(field.equalsIgnoreCase("contact")) {
+			ValidationUtil.isValidContact(value, attribute);		
+		}
+		else if(field.equalsIgnoreCase("address")) {
+			ValidationUtil.isValidVenueAddress(value, attribute);
+		}
+		else if(field.equalsIgnoreCase("amenities")) {
+			ValidationUtil.isValidVenueAmenities(value, attribute);
+		}
+	}
+	
+	public static boolean checkInputVenueField(HttpServletRequest request, String field, String value, String attribute) {
+		boolean isValid = true;
+		try {
+			getInputVenueField(field, value, attribute);
+		}
+		catch(NullPointerException | IndexOutOfBoundsException | IllegalArgumentException e) {
+			request.setAttribute(field+"Error", e.getMessage());
+			System.out.println(e.getMessage());
+			isValid = false;
+		}
+		return isValid;
+	}
+	
+	//retreive duplicate field for venue details
+	public static void getDuplicateVenueField(String field, String value, String attribute,Connection conn, int venueId) throws SQLException {
+		  if(field.equalsIgnoreCase("contact")) {
+			  CrudService.isDuplicated(value, attribute, conn, venueId);
+		  }
+	  }
+	
+	//retreive duplicate field for venue details
+		public static void getDuplicateVenueField(String field, String value, String attribute,Connection conn) throws SQLException {
+			  if(field.equalsIgnoreCase("contact")) {
+				  CrudService.isDuplicated(value, attribute, conn);
+			  }
+		  }
+	
+	//check duplicate check for venue
+	public static boolean checkDuplicateVenue(HttpServletRequest request, String field, String value, String attribute, Connection conn, int venueId) {
+		  boolean isDuplicate = false;
+		  try {
+			  getDuplicateVenueField(field, value, attribute, conn, venueId);
+		  }
+		  catch(SQLException e) {
+			  request.setAttribute(field+"Duplicate", e.getMessage());
+			  System.out.println(e.getMessage());
+			  isDuplicate= true;
+		  }
+		  return isDuplicate;
+	  }
+	
+	//check duplicate check for venue
+		public static boolean checkDuplicateVenue(HttpServletRequest request, String field, String value, String attribute, Connection conn) {
+			  boolean isDuplicate = false;
+			  try {
+				  getDuplicateVenueField(field, value, attribute, conn);
+			  }
+			  catch(SQLException e) {
+				  request.setAttribute(field+"Duplicate", e.getMessage());
+				  System.out.println(e.getMessage());
+				  isDuplicate= true;
+			  }
+			  return isDuplicate;
+		  }
+	
+	//to differentiate methods for each user fields
+		public static void getInputField(String field, String value, String attribute) {
+			if(field.equalsIgnoreCase("firstname") || field.equalsIgnoreCase("lastname")) {
+				ValidationUtil.isValidName(value, attribute);
+			}
+			else if(field.equalsIgnoreCase("dob")) {
+				ValidationUtil.isValidEntryAge(LocalDate.parse(value), attribute);
+			}
+			else if(field.equalsIgnoreCase("gender")) {
+				ValidationUtil.isValidGender(value, attribute);
+			}
+			else if(field.equalsIgnoreCase("contact")) {
+				ValidationUtil.isValidContact(value, attribute);		
+			}
+			else if(field.equalsIgnoreCase("email")) {
+				ValidationUtil.isValidEmail(value, attribute);
+			}
+			else if(field.equalsIgnoreCase("username")) {
+				ValidationUtil.isValidUserName(value, attribute);
+			}
+		}
+		
+		  public static void getDuplicateField(String field, String value, String attribute,Connection conn) throws SQLException {
+			  if(field.equalsIgnoreCase("contact")) {
+				  RegisterService.isDuplicated(value, attribute, conn);
+			  }
+			  else if(field.equalsIgnoreCase("email")) {
+				  RegisterService.isDuplicated(value, attribute, conn);
+			  }
+			  else if(field.equalsIgnoreCase("username")) {
+				  RegisterService.isDuplicated(value, attribute, conn);
+			  }
+		  }
+		  
+		  public static boolean checkDuplicate(HttpServletRequest request, String field, String value, String attribute, Connection conn) {
+			  boolean isDuplicate = false;
+			  try {
+				  getDuplicateField(field, value, attribute, conn);
+			  }
+			  catch(SQLException e) {
+				  request.setAttribute(field+"Duplicate", e.getMessage());
+				  System.out.println(e.getMessage());
+				  isDuplicate= true;
+			  }
+			  return isDuplicate;
+		  }
+		  
+		  public static void getDuplicateField(String field, String value, String attribute, Connection conn, int userId) throws SQLException {
+		        if (field.equalsIgnoreCase("contact")) {
+		            ProfileService.isDuplicated(value, "contact_no", conn, userId);
+		        } else if (field.equalsIgnoreCase("email")) {
+		        	ProfileService.isDuplicated(value, "email", conn, userId);
+		        } else if (field.equalsIgnoreCase("username")) {
+		        	ProfileService.isDuplicated(value, "username", conn, userId);
+		        }
+		    }
+		  
+		  public static boolean checkDuplicate(HttpServletRequest request, String field, String value, String attribute, Connection conn, int userId) {
+		        boolean isDuplicate = false;
+		        try {
+		            getDuplicateField(field, value, attribute, conn, userId);
+		        } catch (SQLException e) {
+		            request.setAttribute(field + "Duplicate", e.getMessage());
+		            System.out.println(e.getMessage());
+		            isDuplicate = true;
+		        }
+		        return isDuplicate;
+		    }
+		  
+		  
+		
+			public static boolean checkInputField(HttpServletRequest request, String field, String value, String attribute) {
+				boolean isValid = true;
+				try {
+					getInputField(field, value, attribute);
+				}
+				catch(NullPointerException | IndexOutOfBoundsException | IllegalArgumentException e) {
+					request.setAttribute(field+"Error", e.getMessage());
+					System.out.println(e.getMessage());
+					isValid = false;
+				}
+				return isValid;
+			}
+			
+			
+				public static boolean checkPasswordField(HttpServletRequest request, String password, String retypePassword, String attribute, String username) {
+					boolean isValid = true;
+					
+					
+					try {
+						ValidationUtil.doPasswordsMatch(password, retypePassword, attribute, username);
+					}
+					catch(NullPointerException | IndexOutOfBoundsException | IllegalArgumentException e) {
+						request.setAttribute("passwordError", e.getMessage());
+						isValid = false;
+					}
+					return isValid;
+				}
+				
+				public static boolean checkImageField(HttpServletRequest request, String attribute, Part imagePart) {
+				    boolean isValid = true;
+				    try {
+				        ValidationUtil.isValidImageExtension(imagePart);
+				    } catch (IllegalArgumentException e) {
+				        request.setAttribute(attribute + "Error", e.getMessage());
+				        isValid = false;
+				    }
+				    return isValid;
+				}
+
 	
 
 }

@@ -68,4 +68,18 @@ public class ProfileService {
 			return user;
 
 	    }
+	    
+	  //Check duplicates excluding the current user
+	    public static boolean isDuplicated(String field, String attribute, Connection conn, int userId) throws SQLException {
+	        String query = "SELECT user_id FROM users WHERE " + attribute + " = ? AND user_id != ?";
+	        try (PreparedStatement ps = conn.prepareStatement(query)) {
+	            ps.setString(1, field);
+	            ps.setInt(2, userId);
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	                throw new SQLException(attribute + " is already taken");
+	            }
+	            return false;
+	        }
+	    }
 }

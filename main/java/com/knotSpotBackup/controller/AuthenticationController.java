@@ -12,8 +12,6 @@ import jakarta.servlet.http.Part;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
@@ -61,15 +59,15 @@ public class AuthenticationController extends HttpServlet {
 	private boolean isValidInputs(HttpServletRequest request, HttpServletResponse response, String firstName, String lastName, String dob, String gender, String contact, String email, String username, String password, String retypePassword, Part image)  throws ServletException, IOException {
 		boolean isValid = true;
 		
-		isValid &= checkInputField(request, "firstname", firstName, "first name");
-		isValid &= checkInputField(request, "lastname", lastName, "last name");
-		isValid &= checkInputField(request, "dob", dob, "Age");
-		isValid &= checkInputField(request, "gender", gender, "gender");
-		isValid &= checkInputField(request, "contact", contact, "Phone number");
-		isValid &= checkInputField(request, "email", email, "Email");
-		isValid &= checkInputField(request, "username", username, "Username");
-		isValid &= checkPasswordField(request, password, retypePassword, "Password", username);
-		isValid &= checkImageField(request, "profile_image", image);
+		isValid &= ValidationUtil.checkInputField(request, "firstname", firstName, "first name");
+		isValid &= ValidationUtil.checkInputField(request, "lastname", lastName, "last name");
+		isValid &= ValidationUtil.checkInputField(request, "dob", dob, "Age");
+		isValid &= ValidationUtil.checkInputField(request, "gender", gender, "gender");
+		isValid &= ValidationUtil.checkInputField(request, "contact", contact, "Phone number");
+		isValid &= ValidationUtil.checkInputField(request, "email", email, "Email");
+		isValid &= ValidationUtil.checkInputField(request, "username", username, "Username");
+		isValid &= ValidationUtil.checkPasswordField(request, password, retypePassword, "Password", username);
+		isValid &= ValidationUtil.checkImageField(request, "profile_image", image);
 		System.out.println("Validation is checked");
 		
 		return isValid;
@@ -132,9 +130,9 @@ public class AuthenticationController extends HttpServlet {
 				
 				boolean isDuplicate = false;
 		   		
-	   			isDuplicate |= checkDuplicate(request, "email", email, "email", registerService.getConn());
-	   			isDuplicate |= checkDuplicate(request, "username", username, "username", registerService.getConn());
-	   			isDuplicate |= checkDuplicate(request, "contact", contact, "contact_no", registerService.getConn());
+	   			isDuplicate |= ValidationUtil.checkDuplicate(request, "email", email, "email", registerService.getConn());
+	   			isDuplicate |= ValidationUtil.checkDuplicate(request, "username", username, "username", registerService.getConn());
+	   			isDuplicate |= ValidationUtil.checkDuplicate(request, "contact", contact, "contact_no", registerService.getConn());
 	   			
 	   			if(isDuplicate) {
 	   				request.setAttribute("showRegister", true);
@@ -177,94 +175,6 @@ public class AuthenticationController extends HttpServlet {
 			
 	}
 	
-	//a try-catch for validationfield 
-	public static boolean checkInputField(HttpServletRequest request, String field, String value, String attribute) {
-		boolean isValid = true;
-		try {
-			getInputField(field, value, attribute);
-		}
-		catch(NullPointerException | IndexOutOfBoundsException | IllegalArgumentException e) {
-			request.setAttribute(field+"Error", e.getMessage());
-			System.out.println(e.getMessage());
-			isValid = false;
-		}
-		return isValid;
-	}
-	
-	//a try-catch for validationfield 
-		public static boolean checkPasswordField(HttpServletRequest request, String password, String retypePassword, String attribute, String username) {
-			boolean isValid = true;
-			
-			
-			try {
-				ValidationUtil.doPasswordsMatch(password, retypePassword, attribute, username);
-			}
-			catch(NullPointerException | IndexOutOfBoundsException | IllegalArgumentException e) {
-				request.setAttribute("passwordError", e.getMessage());
-				isValid = false;
-			}
-			return isValid;
-		}
-		
-		public static boolean checkImageField(HttpServletRequest request, String attribute, Part imagePart) {
-		    boolean isValid = true;
-		    try {
-		        ValidationUtil.isValidImageExtension(imagePart);
-		    } catch (IllegalArgumentException e) {
-		        request.setAttribute(attribute + "Error", e.getMessage());
-		        isValid = false;
-		    }
-		    return isValid;
-		}
-
-	
-	
-	//to differentiate methods for each fields
-	public static void getInputField(String field, String value, String attribute) {
-		if(field.equalsIgnoreCase("firstname") || field.equalsIgnoreCase("lastname")) {
-			ValidationUtil.isValidName(value, attribute);
-		}
-		else if(field.equalsIgnoreCase("dob")) {
-			ValidationUtil.isValidEntryAge(LocalDate.parse(value), attribute);
-		}
-		else if(field.equalsIgnoreCase("gender")) {
-			ValidationUtil.isValidGender(value, attribute);
-		}
-		else if(field.equalsIgnoreCase("contact")) {
-			ValidationUtil.isValidContact(value, attribute);		
-		}
-		else if(field.equalsIgnoreCase("email")) {
-			ValidationUtil.isValidEmail(value, attribute);
-		}
-		else if(field.equalsIgnoreCase("username")) {
-			ValidationUtil.isValidUserName(value, attribute);
-		}
-	}
-	
-	  public static void getDuplicateField(String field, String value, String attribute,Connection conn) throws SQLException {
-		  if(field.equalsIgnoreCase("contact")) {
-			  RegisterService.isDuplicated(value, attribute, conn);
-		  }
-		  else if(field.equalsIgnoreCase("email")) {
-			  RegisterService.isDuplicated(value, attribute, conn);
-		  }
-		  else if(field.equalsIgnoreCase("username")) {
-			  RegisterService.isDuplicated(value, attribute, conn);
-		  }
-	  }
-	  
-	  public static boolean checkDuplicate(HttpServletRequest request, String field, String value, String attribute, Connection conn) {
-		  boolean isDuplicate = false;
-		  try {
-			  getDuplicateField(field, value, attribute, conn);
-		  }
-		  catch(SQLException e) {
-			  request.setAttribute(field+"Duplicate", e.getMessage());
-			  System.out.println(e.getMessage());
-			  isDuplicate= true;
-		  }
-		  return isDuplicate;
-	  }
 	
 	
 	//login

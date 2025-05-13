@@ -55,7 +55,7 @@
 						</a>
 					</li>
 					<li class="nav-link">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/management">
 							<i class="fa fa-book icon" aria-hidden="true"></i>
 							<span class="text nav-text">Venue Manager</span>
 						</a>
@@ -83,12 +83,17 @@
 			
 			<div class="bottom-content">
 				<ul class="menu-links">
-					<li class="nav-link">
+				 <li class="nav-link">
+					<form action="${pageContext.request.contextPath}/logout" method="post" class="logout-form">
 						<a href="#">
+							<button type="submit" class="menu-link logout-button" name="logout" value="logout">
 							<i class="fa fa-sign-out icon" aria-hidden="true"></i>
 							<span class="text nav-text">Logout</span>
+							</button>
 						</a>
-					</li>
+					</form>
+				</li>
+					
 					<li class="mode">
 						<div class="moon-sun">
 							<i class="fa fa-moon icon moon" aria-hidden="true"></i>

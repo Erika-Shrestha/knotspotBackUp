@@ -103,7 +103,7 @@
 					<div class="card-list swiper-wrapper">
 					<c:forEach var="venue" items="${listVenue}">
 						<div class="card-item swiper-slide">
-							<img src="${pageContext.request.contextPath}/resources/cat-three.jpg" alt="test_image" class="venue-img">
+							<img src="${pageContext.request.contextPath}/resources/${venue.venuePic}" alt="test_image" class="venue-img">
 							<h2 class="venue-name">${venue.name}</h2>
 							<p class="venue-desc">${venue.amenities}</p>
 							<button class="venue-button">View</button>

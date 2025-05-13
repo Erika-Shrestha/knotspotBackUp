@@ -7,6 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
+
+import com.knotSpotBackup.model.VenueModel;
+import com.knotSpotBackup.service.CrudService;
 
 /**
  * Servlet implementation class Dashboard
@@ -16,11 +20,12 @@ public class Dashboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-	request.getRequestDispatcher("/WEB-INF/pages/Admin/dashboard.jsp").forward(request,response);
 
-		
+	CrudService crudService = new CrudService();
+	List<VenueModel> listVenue = crudService.selectAllVenues();
+	request.setAttribute("listVenue", listVenue);
+	request.getRequestDispatcher("/WEB-INF/pages/Admin/dashboard.jsp").forward(request,response);
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

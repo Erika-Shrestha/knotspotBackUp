@@ -229,6 +229,52 @@
 	text-align: center;
 }
 
+.modal form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1rem; 
+  justify-items: stretch; 
+}
+
+.modal form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal form input, 
+.modal form select {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.modal form .input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal form .file-con {
+  grid-column: span 2;
+}
+
+.modal form button {
+  grid-column: span 2;
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.modal form button:hover {
+  background-color: #45a049;
+}
+
 .modal h1{
 	margin:0;
 }
@@ -237,35 +283,27 @@
 	opacity: 0.7;
 }
 
-.form-grid {
-  	display: grid;
-  	grid-template-columns: 1fr 1fr;
-  	gap: 1rem;
+
+
+.modal-container form div{
+	position: relative;
 }
 
-.form-grid input, .form-grid select, .form-grid .file-con {
-  	width: 100%;
-  	box-sizing: border-box;
-}
 
-.file-box {
-  	display: none; 
-}
 
-.file-label {
-  	display: inline-block;
-  	margin-bottom: 0.4rem;
-  	padding: 0.5rem 0.7rem;
-  	background-color: #4CAF50;
-  	color: white;
-  	font-weight: bold;
-  	cursor: pointer;
-  	border-radius: 0.2rem;
-  	transition: background-color 0.3s ease;
+.errorDisplay{
+	display: flex;
+	position: absolute;
+	width: 10rem;
+	height: 1rem;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0.1rem;
+	font-size: 0.5rem;
+	background-color: #FDCAC4;
+	color: #ED6160;
+	top: -50%;
+	left: 30%;
+	z-index: 99;
 }
-
-.file-label:hover {
-  	background-color: #45a049;
-}
-
 
