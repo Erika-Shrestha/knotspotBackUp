@@ -1,4 +1,4 @@
-package com.knotSpotBackup.controller;
+package com.knotSpot.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

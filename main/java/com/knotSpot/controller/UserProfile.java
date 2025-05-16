@@ -1,4 +1,4 @@
-package com.knotSpotBackup.controller;
+package com.knotSpot.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -13,10 +13,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.knotSpotBackup.model.UserModel;
-import com.knotSpotBackup.service.ProfileService;
-import com.knotSpotBackup.service.RegisterService;
-import com.knotSpotBackup.util.ValidationUtil;
+import com.knotSpot.model.UserModel;
+import com.knotSpot.service.ProfileService;
+import com.knotSpot.service.RegisterService;
+import com.knotSpot.util.ValidationUtil;
 
 /**
  * Servlet implementation class UserProfile

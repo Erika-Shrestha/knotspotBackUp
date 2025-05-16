@@ -1,13 +1,13 @@
-package com.knotSpotBackup.service;
+package com.knotSpot.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.knotSpotBackup.config.DdConfig;
-import com.knotSpotBackup.model.UserModel;
-import com.knotSpotBackup.util.PasswordUtil;
+import com.knotSpot.config.DbConfig;
+import com.knotSpot.model.UserModel;
+import com.knotSpot.util.PasswordUtil;
 
 public class LoginService {
 private Connection conn;	//Declare a variable to store the sql connection imported from config class
@@ -19,7 +19,7 @@ private Connection conn;	//Declare a variable to store the sql connection import
 	 */
 	public LoginService() {
 		try {
-			conn = DdConfig.getDbConnection();
+			conn = DbConfig.getDbConnection();
 		}catch(SQLException | ClassNotFoundException e){
 			System.out.println("DB connection failed :" +e.getMessage());
 			e.printStackTrace();

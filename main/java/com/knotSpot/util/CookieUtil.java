@@ -1,4 +1,4 @@
-package com.knotSpotBackup.util;
+package com.knotSpot.util;
 
 import java.util.Arrays;
 

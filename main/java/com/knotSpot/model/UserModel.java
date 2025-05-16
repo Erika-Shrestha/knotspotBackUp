@@ -1,4 +1,4 @@
-package com.knotSpotBackup.model;
+package com.knotSpot.model;
 
 import java.time.LocalDate;
 

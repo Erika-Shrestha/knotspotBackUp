@@ -1,4 +1,4 @@
-package com.knotSpotBackup.controller;
+package com.knotSpot.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -15,11 +15,11 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeParseException;
-import com.knotSpotBackup.model.UserModel;
-import com.knotSpotBackup.service.LoginService;
-import com.knotSpotBackup.service.RegisterService;
-import com.knotSpotBackup.util.CookieUtil;
-import com.knotSpotBackup.util.ValidationUtil;
+import com.knotSpot.model.UserModel;
+import com.knotSpot.service.LoginService;
+import com.knotSpot.service.RegisterService;
+import com.knotSpot.util.CookieUtil;
+import com.knotSpot.util.ValidationUtil;
 
 
 /**

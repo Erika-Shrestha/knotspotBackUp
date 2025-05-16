@@ -1,4 +1,4 @@
-package com.knotSpotBackup.service;
+package com.knotSpot.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,16 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-import com.knotSpotBackup.config.DdConfig;
-import com.knotSpotBackup.model.UserModel;
-import com.knotSpotBackup.util.PasswordUtil;
+import com.knotSpot.config.DbConfig;
+import com.knotSpot.model.UserModel;
+import com.knotSpot.util.PasswordUtil;
 
 public class RegisterService {
 private Connection conn;
 	
 	public RegisterService() {
 		try {
-			conn = DdConfig.getDbConnection();
+			conn = DbConfig.getDbConnection();
 		}catch(SQLException | ClassNotFoundException e){
 			System.out.println("DB connection failed :" +e.getMessage());
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.knotSpotBackup.service;
+package com.knotSpot.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.knotSpotBackup.config.DdConfig;
-import com.knotSpotBackup.model.VenueModel;
+import com.knotSpot.config.DbConfig;
+import com.knotSpot.model.VenueModel;
 
 public class CrudService {
 
@@ -17,7 +17,7 @@ public class CrudService {
 	
 	public CrudService() {
 		try {
-			conn = DdConfig.getDbConnection();
+			conn = DbConfig.getDbConnection();
 		}catch(SQLException | ClassNotFoundException e){
 			System.out.println("DB connection failed :" +e.getMessage());
 			e.printStackTrace();

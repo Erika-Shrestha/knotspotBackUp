@@ -1,4 +1,4 @@
-package com.knotSpotBackup.controller;
+package com.knotSpot.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import com.knotSpotBackup.model.VenueModel;
-import com.knotSpotBackup.service.CrudService;
-import com.knotSpotBackup.util.ValidationUtil;
+import com.knotSpot.model.VenueModel;
+import com.knotSpot.service.CrudService;
+import com.knotSpot.util.ValidationUtil;
 
 /**
  * Servlet implementation class VenueManagementController

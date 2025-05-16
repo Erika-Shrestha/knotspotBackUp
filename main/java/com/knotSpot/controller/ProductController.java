@@ -1,4 +1,4 @@
-package com.knotSpotBackup.controller;
+package com.knotSpot.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,9 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import com.knotSpotBackup.model.VenueModel;
-import com.knotSpotBackup.service.CrudService;
-import com.knotSpotBackup.service.SearchService;
+import com.knotSpot.model.VenueModel;
+import com.knotSpot.service.CrudService;
+import com.knotSpot.service.SearchService;
 
 /**
  * Servlet implementation class ProductController

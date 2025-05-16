@@ -1,12 +1,12 @@
-package com.knotSpotBackup.service;
+package com.knotSpot.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.knotSpotBackup.config.DdConfig;
-import com.knotSpotBackup.model.UserModel;
+import com.knotSpot.config.DbConfig;
+import com.knotSpot.model.UserModel;
 
 public class ProfileService {
 
@@ -15,7 +15,7 @@ public class ProfileService {
 
 	    public ProfileService() {
 	        try {
-	            conn = DdConfig.getDbConnection();
+	            conn = DbConfig.getDbConnection();
 	        } catch (SQLException | ClassNotFoundException e) {
 	            System.out.println("DB connection failed :" + e.getMessage());
 	            e.printStackTrace();

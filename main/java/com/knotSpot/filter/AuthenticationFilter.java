@@ -1,4 +1,4 @@
-package com.knotSpotBackup.filter;
+package com.knotSpot.filter;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import com.knotSpotBackup.util.CookieUtil;
-import com.knotSpotBackup.util.SessionUtil;
+import com.knotSpot.util.CookieUtil;
+import com.knotSpot.util.SessionUtil;
 
 /**
  * Servlet Filter implementation class AuthenticationFilter

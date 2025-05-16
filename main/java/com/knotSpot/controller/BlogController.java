@@ -1,4 +1,4 @@
-package com.knotSpotBackup.controller;
+package com.knotSpot.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,18 +8,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class Faq
+ * Servlet implementation class BlogController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/faq" })
-public class Faq extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/blog" })
+public class BlogController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/pages/Customer/faq.jsp").forward(request,response);
+		request.getRequestDispatcher("/WEB-INF/pages/Customer/blog.jsp").forward(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

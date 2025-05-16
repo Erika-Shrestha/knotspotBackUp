@@ -1,4 +1,4 @@
-package com.knotSpotBackup.util;
+package com.knotSpot.util;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,9 +6,9 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.regex.Pattern;
 
-import com.knotSpotBackup.service.CrudService;
-import com.knotSpotBackup.service.ProfileService;
-import com.knotSpotBackup.service.RegisterService;
+import com.knotSpot.service.CrudService;
+import com.knotSpot.service.ProfileService;
+import com.knotSpot.service.RegisterService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
